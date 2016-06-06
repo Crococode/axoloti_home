@@ -1,0 +1,47 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="octaveShift" uuid="fdfd3e78-2e1b-4942-b027-65c98f6f7e87">
+      <sDescription>octave shifter</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <helpPatch>math.axh</helpPatch>
+      <inlets>
+         <frac32 name="a" description="a"/>
+         <bool32 name="up"/>
+         <bool32 name="inlet2"/>
+      </inlets>
+      <outlets>
+         <frac32 name="result" description="a+1"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[bool_32t state;
+bool_32t busy;
+const int_32t highthres = 3;
+const int_32t lowthres = 3;]]></code.declaration>
+      <code.init><![CDATA[state = 0;
+busy = 0;]]></code.init>
+      <code.krate><![CDATA[if(!busy)
+{
+	if(inlet_up && (state+1<highthres))
+	{
+		state = state-1;
+		busy = 1;
+	}
+	if(inlet_down && (state+1<lowthres))
+	{
+		state = state-1;
+		busy = 1;
+	}
+	
+}
+else
+{
+	if(!inlet_up && !inlet_down)
+	{
+		busy = 0;
+	}
+}
+outlet_result= inlet_a+((12*state)<<21);]]></code.krate>
+   </obj.normal>
+</objdefs>

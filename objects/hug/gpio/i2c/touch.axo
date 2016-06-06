@@ -1,0 +1,192 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="touch" uuid="7e28dbff-925b-41f6-99ee-ce2b9e31697a">
+      <sDescription>script with 2 inputs and 2 outputs, running in a separate thread, you must define &quot;void setup(void){}&quot; and &quot;void loop(void)&quot;</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <helpPatch>script.axh</helpPatch>
+      <inlets/>
+      <outlets>
+         <frac32.positive name="sum"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <depends>
+         <depend>I2CD1</depend>
+      </depends>
+      <code.declaration><![CDATA[#define _BV(x)   (1 << x)
+#define MPR121_I2CADDR_DEFAULT 0x5A
+
+#define MPR121_TOUCHSTATUS_L 0x00
+#define MPR121_TOUCHSTATUS_H 0x01
+#define MPR121_FILTDATA_0L  0x04
+#define MPR121_FILTDATA_0H  0x05
+#define MPR121_BASELINE_0   0x1E
+#define MPR121_MHDR         0x2B
+#define MPR121_NHDR         0x2C
+#define MPR121_NCLR         0x2D
+#define MPR121_FDLR         0x2E
+#define MPR121_MHDF         0x2F
+#define MPR121_NHDF         0x30
+#define MPR121_NCLF         0x31
+#define MPR121_FDLF         0x32
+#define MPR121_NHDT         0x33
+#define MPR121_NCLT         0x34
+#define MPR121_FDLT         0x35
+
+#define MPR121_TOUCHTH_0    0x41
+#define MPR121_RELEASETH_0    0x42
+#define MPR121_DEBOUNCE 0x5B
+#define MPR121_CONFIG1 0x5C
+#define MPR121_CONFIG2 0x5D
+#define MPR121_CHARGECURR_0 0x5F
+#define MPR121_CHARGETIME_1 0x6C
+#define MPR121_ECR 0x5E
+#define MPR121_AUTOCONFIG0 0x7B
+#define MPR121_AUTOCONFIG1 0x7C
+#define MPR121_UPLIMIT   0x7D
+#define MPR121_LOWLIMIT  0x7E
+#define MPR121_TARGETLIMIT  0x7F
+
+#define MPR121_GPIODIR  0x76
+#define MPR121_GPIOEN  0x77
+#define MPR121_GPIOSET  0x78
+#define MPR121_GPIOCLR  0x79
+#define MPR121_GPIOTOGGLE  0x7A
+
+#define MPR121_SOFTRESET 0x80
+
+int32_t currtouched, lasttouched, sum;
+
+void setThreshholds(uint8_t touch, uint8_t release) {
+  for (uint8_t i=0; i<12; i++) {
+    writeRegister(0x41 + 2*i, touch);
+    writeRegister(0x42 + 2*i, release);
+  }
+}
+
+void writeRegister(uint8_t reg, uint8_t value) {
+    static uint8_t _txbuf[2] __attribute__ ((section (".sram2")));
+    static uint8_t _rxbuf[6] __attribute__ ((section (".sram2")));
+    static const I2CConfig i2cfg = {
+    	OPMODE_I2C,
+    	400000,
+    	FAST_DUTY_CYCLE_2,
+    };
+    systime_t tmo = MS2ST(30);
+    const int MPU_addr=0x5A;
+    _txbuf[0]=reg;
+    _txbuf[1]=value;
+    i2cMasterTransmitTimeout(&I2CD1, MPU_addr, _txbuf, 2, _rxbuf, 0, tmo);
+}
+
+msg_t ThreadX2(){	
+	const int MPU_addr=0x5A;
+	// allocate buffers suitable for DMA transfert!
+	static uint8_t _txbuf[2] __attribute__ ((section (".sram2")));
+	static uint8_t _rxbuf[6] __attribute__ ((section (".sram2")));
+	systime_t tmo = MS2ST(30);
+	while(!chThdShouldTerminate()){
+		_txbuf[0] = 0x00;
+		i2cMasterTransmitTimeout(&I2CD1, MPU_addr, _txbuf, 1, _rxbuf, 2, tmo);
+		currtouched = _rxbuf[0]<<8 | _rxbuf[1];
+		/*
+		LogTextMessage("val: %d,%d,%d,%d,%d,%d,%d,%d", x>>0,x<<1,x<<2,x<<3,x>>4,x>>5,x>>6,x>>7);
+		LogTextMessage("val: %d", x);
+		LogTextMessage("val: %d", y);
+		LogTextMessage("\n");
+		*/
+		//LogTextMessage("val: %d", currtouched);
+		sum = 0;
+		for (uint8_t i=0; i<12; i++) {
+			if (currtouched & _BV(i) )
+			{
+				sum +=1;
+			}
+    			// it if *is* touched and *wasnt* touched before, alert!
+    			if ((currtouched & _BV(i)) && !(lasttouched & _BV(i)) ) {
+      			LogTextMessage("val: %d touched", i);
+    			}
+    			// if it *was* touched and now *isnt*, alert!
+    			if (!(currtouched & _BV(i)) && (lasttouched & _BV(i)) ) {
+      			LogTextMessage("val: %d released", i);
+    			}
+  		}
+    		// reset our state
+ 		lasttouched = currtouched;
+		chThdSleepMilliseconds(100);
+	}
+	chThdExit((msg_t)0);
+}
+
+static msg_t ThreadX(void *arg) {
+((attr_parent *)arg)->ThreadX2();
+}
+WORKING_AREA(waThreadX, 1024);
+Thread *Thd;
+]]></code.declaration>
+      <code.init><![CDATA[  currtouched =0;
+  lasttouched =0;
+  palSetPadMode(GPIOB, 8, PAL_MODE_ALTERNATE(4)|PAL_STM32_PUDR_PULLUP|PAL_STM32_OTYPE_OPENDRAIN);// SCL
+  palSetPadMode(GPIOB, 9, PAL_MODE_ALTERNATE(4)|PAL_STM32_PUDR_PULLUP|PAL_STM32_OTYPE_OPENDRAIN);// SDA
+  static const I2CConfig i2cfg = {
+    OPMODE_I2C,
+    400000,
+    FAST_DUTY_CYCLE_2,
+  };
+  systime_t tmo = MS2ST(300);
+  const int MPU_addr=0x5A;
+  static uint8_t _txbuf[2] __attribute__ ((section (".sram2")));
+  static uint8_t _rxbuf[6] __attribute__ ((section (".sram2")));
+  i2cStart(&I2CD1, &i2cfg);
+
+// SOFT RESET
+  writeRegister(MPR121_SOFTRESET, 0x63);
+
+// TEST
+  writeRegister(MPR121_ECR, 0x0);
+  _txbuf[0] = 0x5D;
+  i2cMasterTransmitTimeout(&I2CD1, MPU_addr, _txbuf, 1, _rxbuf, 1, tmo);
+  LogTextMessage("val: 0x%04x", _rxbuf[0]);
+
+  setThreshholds(12, 6);
+
+// CONFIG
+  writeRegister(MPR121_MHDR, 0x01);
+  writeRegister(MPR121_NHDR, 0x01);
+  writeRegister(MPR121_NCLR, 0x0E);
+  writeRegister(MPR121_FDLR, 0x00);
+
+  writeRegister(MPR121_MHDF, 0x01);
+  writeRegister(MPR121_NHDF, 0x05);
+  writeRegister(MPR121_NCLF, 0x01);
+  writeRegister(MPR121_FDLF, 0x00);
+
+  writeRegister(MPR121_NHDT, 0x00);
+  writeRegister(MPR121_NCLT, 0x00);
+  writeRegister(MPR121_FDLT, 0x00);
+
+  writeRegister(MPR121_DEBOUNCE, 0);
+
+  writeRegister(MPR121_CONFIG1, 0x10); // default, 16uA charge current
+  writeRegister(MPR121_CONFIG2, 0x20); // 0.5uS encoding, 1ms period
+
+
+
+// ENABLE ALL ELECTRODES  
+  writeRegister(MPR121_ECR, 0x8F);
+
+
+Thd = chThdCreateStatic(waThreadX, sizeof(waThreadX),
+                    NORMALPRIO, ThreadX, (void *)this);
+]]></code.init>
+      <code.dispose><![CDATA[chThdTerminate(Thd);
+chThdWait(Thd);
+//i2cStop(&I2CD1);
+i2cStop(&I2CD1);
+palSetPadMode(GPIOA, 8, PAL_MODE_INPUT_ANALOG);
+palSetPadMode(GPIOA, 9, PAL_MODE_INPUT_ANALOG);]]></code.dispose>
+      <code.krate><![CDATA[uint32_t xx = int32_t (this->currtouched);
+outlet_sum = (this->sum)<<24;]]></code.krate>
+   </obj.normal>
+</objdefs>
