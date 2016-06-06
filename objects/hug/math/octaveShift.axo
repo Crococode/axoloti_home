@@ -7,41 +7,63 @@
       <inlets>
          <frac32 name="a" description="a"/>
          <bool32 name="up"/>
-         <bool32 name="inlet2"/>
+         <bool32 name="down"/>
       </inlets>
       <outlets>
          <frac32 name="result" description="a+1"/>
+         <bool32 name="trig"/>
       </outlets>
       <displays/>
       <params/>
       <attribs/>
-      <code.declaration><![CDATA[bool_32t state;
-bool_32t busy;
-const int_32t highthres = 3;
-const int_32t lowthres = 3;]]></code.declaration>
-      <code.init><![CDATA[state = 0;
-busy = 0;]]></code.init>
-      <code.krate><![CDATA[if(!busy)
+      <code.declaration><![CDATA[int _state;
+bool _busy;
+int _highthres = 6;
+int _lowthres = -4;
+int _delay;
+bool _trig;]]></code.declaration>
+      <code.init><![CDATA[_state = 0;
+_busy = 0;
+_delay = 0;
+_trig = 0;]]></code.init>
+      <code.krate><![CDATA[if(_busy == 0 && _delay > 1000)
 {
-	if(inlet_up && (state+1<highthres))
+	if((inlet_up == 1) && (_state+1<_highthres))
 	{
-		state = state-1;
-		busy = 1;
+		if(inlet_down == 1)
+		{
+			_trig=1;
+		}
+		else
+			{
+			_state = _state+1;
+			_busy = 1;
+			_delay = 0;
+	
+			LogTextMessage("%d",_state);
+		}
 	}
-	if(inlet_down && (state+1<lowthres))
+	if((inlet_down == 1) && (_state-1>_lowthres))
 	{
-		state = state-1;
-		busy = 1;
+		_state = _state-1;
+		_busy = 1;
+		_delay = 0;
+		
+		LogTextMessage("%d",_state);
 	}
 	
 }
 else
 {
-	if(!inlet_up && !inlet_down)
+	if((inlet_up == 0) && (inlet_down == 0))
 	{
-		busy = 0;
+		_busy = 0;
+		_trig=0;
 	}
 }
-outlet_result= inlet_a+((12*state)<<21);]]></code.krate>
+_delay++;
+//outlet_result= inlet_a+((12*_state)<<21);
+outlet_result= ((12*_state)<<21);
+outlet_trig=_trig;]]></code.krate>
    </obj.normal>
 </objdefs>
