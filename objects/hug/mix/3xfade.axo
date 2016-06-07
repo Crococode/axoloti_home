@@ -1,0 +1,26 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="3xfade" uuid="922ec70f-7a05-4f55-b958-59a1e8bfb417">
+      <sDescription>crossfade between two inputs</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <inlets>
+         <frac32buffer name="i1" description="input"/>
+         <frac32buffer name="i2" description="input"/>
+         <frac32.positive name="c" description="control"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="o" description="output"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.krate><![CDATA[   int32_t ccompl = ((128<<20)-inlet_c);
+]]></code.krate>
+      <code.srate><![CDATA[   {
+      int64_t a = (int64_t)inlet_i2 * inlet_c;
+      a += (int64_t)inlet_i1 * ccompl;
+      outlet_o= a>>27;
+   }
+]]></code.srate>
+   </obj.normal>
+</objdefs>

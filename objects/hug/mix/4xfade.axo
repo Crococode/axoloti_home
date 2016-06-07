@@ -1,0 +1,57 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="4xfade" uuid="f1b177fc-3fac-4e70-ae84-65f8d1eb484e">
+      <sDescription>crossfade between two inputs</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <inlets>
+         <frac32buffer name="i1" description="input"/>
+         <frac32buffer name="i2" description="input"/>
+         <frac32buffer name="i3" description="input"/>
+         <frac32buffer name="i4" description="input"/>
+         <frac32.positive name="c" description="control"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="o" description="output"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[int32_t ccompl;
+int32_t ccompl2;
+int32_t c;]]></code.declaration>
+      <code.init><![CDATA[c = 0;]]></code.init>
+      <code.krate><![CDATA[   if((83<<20) < inlet_c)
+   {
+   	ccompl2 = ((128<<20)-inlet_c)*3;
+   	ccompl = ((128<<20)-ccompl2);
+   }
+   else if(((43<<20) < inlet_c))
+   {
+   	ccompl2 = ((86<<20)-inlet_c)*3;
+   	ccompl = ((128<<20)-ccompl2);
+   }
+   else
+   {
+   	ccompl2 = ((43<<20)-inlet_c)*3;
+   	ccompl = ((128<<20)-ccompl2);
+   }	]]></code.krate>
+      <code.srate><![CDATA[int64_t a = 0;
+   if((83<<20) < inlet_c)
+   {
+		a = (int64_t)inlet_i1 * ccompl;
+		a += (int64_t)inlet_i2 * ccompl2;
+   }
+   else if(((43<<20) < inlet_c))
+   {
+		a = (int64_t)inlet_i2 * ccompl;
+		a += (int64_t)inlet_i3 * ccompl2;
+   }
+   else
+   {
+		a = (int64_t)inlet_i3 * ccompl;
+		a += (int64_t)inlet_i4 * ccompl2;
+   }
+      outlet_o= a>>27;
+]]></code.srate>
+   </obj.normal>
+</objdefs>

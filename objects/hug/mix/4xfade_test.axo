@@ -1,0 +1,70 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="4xfade_test" uuid="02655798-b7b8-47ce-8135-df72d48cbf25">
+      <sDescription>crossfade between two inputs</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <inlets>
+         <frac32buffer name="i1" description="input"/>
+         <frac32buffer name="i2" description="input"/>
+         <frac32.positive name="c" description="control"/>
+         <frac32buffer name="i3" description="input"/>
+         <frac32buffer name="i4" description="input"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="o" description="output"/>
+         <frac32.bipolar name="oo"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[int32_t ccompl;
+int32_t ccompl2;
+int32_t c;]]></code.declaration>
+      <code.init><![CDATA[c = 0;]]></code.init>
+      <code.krate><![CDATA[   if((83<<20) < inlet_c)
+   {
+   	ccompl2 = (int32_t)(((128<<20)-inlet_c)/44);
+   	ccompl = ((128<<20)-ccompl2);
+   }
+   else if(((43<<20) < inlet_c))
+   {
+   	ccompl2 = (int32_t)(((86<<20)-inlet_c)/3);
+   	ccompl = ((128<<20)-ccompl2);
+   }
+   else
+   {
+   	ccompl2 = ((43<<20)-inlet_c);
+   	ccompl = ((128<<20)-ccompl2>>7);
+   	ccompl = ((128<<20)-inlet_c);
+   }
+   outlet_oo= ccompl;	]]></code.krate>
+      <code.srate><![CDATA[int64_t a = (int64_t)inlet_i2 * inlet_c;
+	if((83<<20) < inlet_c)
+   	{
+   		a = (int64_t)inlet_i1 * (ccompl<<27);
+      	a += (int64_t)inlet_i2 * (ccompl2<<27);
+   	}
+   	else if(((43<<20) < inlet_c))
+   		{
+   			a = (int64_t)inlet_i2 * (ccompl<<27);
+      		a += (int64_t)inlet_i3 * (ccompl2<<27);
+   		}
+  		else
+   		{
+   			if(c>(120<<20)) 
+   				{
+   					LogTextMessage("here");
+   				}
+			int64_t a = (int64_t)inlet_i3 * inlet_c;
+     		a += (int64_t)inlet_i4 * ccompl;
+   		}
+   		c=c+(1<<15);
+   if(c>(120<<20)) 
+   {
+   	LogTextMessage("compl2 value = %d",(ccompl));
+   	c=(2<<20);
+   }
+      outlet_o= a>>27;
+]]></code.srate>
+   </obj.normal>
+</objdefs>

@@ -1,0 +1,67 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="dtmf" uuid="389e47d8-1280-4b11-9bf0-0501f70d93bb">
+      <sDescription>decodes ouput of a dmtf converter chip MT8870 connected to four gpio input pins.</sDescription>
+      <author>Crococode</author>
+      <license>BSD</license>
+      <helpPatch>math.axh</helpPatch>
+      <inlets>
+         <frac32 name="i1" description="in1"/>
+         <frac32 name="i2"/>
+         <frac32 name="i3"/>
+         <frac32 name="i4"/>
+      </inlets>
+      <outlets>
+         <frac32 name="out"/>
+         <bool32 name="outt"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[const int32_t thr = (43<<20);
+int32_t out;
+int32_t pout;]]></code.declaration>
+      <code.init><![CDATA[out = 0;
+pout = 0;]]></code.init>
+      <code.krate><![CDATA[if (inlet_i4<thr)
+{
+if (inlet_i3<thr)
+{
+if (inlet_i2<thr && inlet_i1>thr){out = (36<<20);}
+if (inlet_i2>thr && inlet_i1<thr){out = (37<<20);}
+if (inlet_i2>thr && inlet_i1>thr){out = (38<<20);}
+}
+else
+{
+if (inlet_i2<thr && inlet_i1<thr){out = (39<<20);}
+if (inlet_i2<thr && inlet_i1>thr){out = (40<<20);}
+if (inlet_i2>thr && inlet_i1<thr){out = (41<<20);}
+if (inlet_i2>thr && inlet_i1>thr){out = (42<<20);}
+}
+}
+else
+{
+if (inlet_i3<thr)
+{
+if (inlet_i2<thr && inlet_i1<thr){out = (43<<20);}
+if (inlet_i2<thr && inlet_i1>thr){out = (44<<20);}
+if (inlet_i2>thr && inlet_i1<thr){out = (45<<20);}
+if (inlet_i2>thr && inlet_i1>thr){out = (46<<20);}
+}
+else
+{
+if (inlet_i2<thr && inlet_i1<thr){out = (47<<20);}	
+}
+}
+outlet_out = out;
+if (out != pout)
+{
+	outlet_outt = 1;
+	pout = out;
+}
+else
+{
+	outlet_outt = 0;
+}
+]]></code.krate>
+   </obj.normal>
+</objdefs>

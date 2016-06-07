@@ -1,0 +1,93 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="accelorometer" uuid="59ac58ed-19fe-436d-b454-4308f8d69620">
+      <sDescription>script with 2 inputs and 2 outputs, running in a separate thread, you must define &quot;void setup(void){}&quot; and &quot;void loop(void)&quot;</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <helpPatch>script.axh</helpPatch>
+      <inlets/>
+      <outlets>
+         <frac32.positive name="x_"/>
+         <frac32.positive name="y_"/>
+         <frac32.positive name="z_"/>
+         <frac32.positive name="abs"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <depends>
+         <depend>I2CD1</depend>
+      </depends>
+      <code.declaration><![CDATA[int32_t x,y, z;
+
+msg_t ThreadX2(){	
+	const int MPU_addr=0x68;
+	// allocate buffers suitable for DMA transfert!
+	static uint8_t _txbuf[2] __attribute__ ((section (".sram2")));
+	static uint8_t _rxbuf[6] __attribute__ ((section (".sram2")));
+	systime_t tmo = MS2ST(300);
+	while(!chThdShouldTerminate()){
+		_txbuf[0] = 0x3B;
+		i2cMasterTransmitTimeout(&I2CD1, MPU_addr, _txbuf, 1, _rxbuf, 6, tmo);
+		x = _rxbuf[0] << 8 | _rxbuf[1];
+		y = _rxbuf[2] << 8 | _rxbuf[3];
+		z = _rxbuf[4] << 8 | _rxbuf[5];
+		/* 
+		LogTextMessage("val: %d", x);
+		LogTextMessage("val: %d", y);
+		LogTextMessage("val: %d", z);
+		LogTextMessage("\n");
+		*/
+		chThdSleepMilliseconds(100);
+	}
+	chThdExit((msg_t)0);
+}
+
+static msg_t ThreadX(void *arg) {
+((attr_parent *)arg)->ThreadX2();
+}
+WORKING_AREA(waThreadX, 1024);
+Thread *Thd;
+]]></code.declaration>
+      <code.init><![CDATA[x = 0; y = 0; z = 0;
+palSetPadMode(GPIOB, 8, PAL_MODE_ALTERNATE(4)|PAL_STM32_PUDR_PULLUP|PAL_STM32_OTYPE_OPENDRAIN);// SCL
+palSetPadMode(GPIOB, 9, PAL_MODE_ALTERNATE(4)|PAL_STM32_PUDR_PULLUP|PAL_STM32_OTYPE_OPENDRAIN);// SDA
+static const I2CConfig i2cfg = {
+    OPMODE_I2C,
+    400000,
+    FAST_DUTY_CYCLE_2,
+};
+systime_t tmo = MS2ST(300);
+const int MPU_addr=0x68;
+static uint8_t _txbuf[2] __attribute__ ((section (".sram2")));
+static uint8_t _rxbuf[6] __attribute__ ((section (".sram2")));
+i2cStart(&I2CD1, &i2cfg);
+_txbuf[0] = 0x6B;
+_txbuf[1] = 0x0;
+i2cMasterTransmitTimeout(&I2CD1, MPU_addr, _txbuf, 2, _rxbuf, 0, tmo);
+Thd = chThdCreateStatic(waThreadX, sizeof(waThreadX),
+                    NORMALPRIO, ThreadX, (void *)this);
+]]></code.init>
+      <code.dispose><![CDATA[chThdTerminate(Thd);
+chThdWait(Thd);
+//i2cStop(&I2CD1);
+i2cStop(&I2CD1);
+palSetPadMode(GPIOA, 8, PAL_MODE_INPUT_ANALOG);
+palSetPadMode(GPIOA, 9, PAL_MODE_INPUT_ANALOG);]]></code.dispose>
+      <code.krate><![CDATA[uint32_t xx = int32_t (this->x)<<11;
+uint32_t yy = int32_t (this->y)<<11;
+uint32_t zz = int32_t (this->z)<<11;
+
+xx = xx<(32768<<11)?xx:(65536<<11)-xx;
+yy = yy<(32768<<11)?yy:(65536<<11)-yy;
+zz = zz<(32768<<11)?zz:(65536<<11)-zz;
+
+outlet_x__ = xx;
+outlet_y__ = yy;
+outlet_z__ = zz;
+
+float a =  ___SMMUL(xx,xx)+___SMMUL(yy,yy)+___SMMUL(zz,zz);
+a *= (1<<27);
+a = _VSQRTF(a);
+outlet_abs = (int)a;]]></code.krate>
+   </obj.normal>
+</objdefs>

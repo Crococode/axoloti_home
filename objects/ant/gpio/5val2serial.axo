@@ -1,0 +1,108 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="5val2serial" uuid="fd4f7fb3-7e56-403d-be33-38299c3aec8c">
+      <sDescription>script with 2 inputs and 2 outputs, running in a separate thread</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <helpPatch>script.axh</helpPatch>
+      <inlets>
+         <int32 name="in1_"/>
+         <int32 name="in2_"/>
+         <int32 name="in3_"/>
+         <int32 name="in4_"/>
+         <int32 name="clock_"/>
+      </inlets>
+      <outlets/>
+      <displays/>
+      <params/>
+      <attribs>
+         <combo name="baudrate">
+            <MenuEntries>
+               <string>1200</string>
+               <string>2400</string>
+               <string>4800</string>
+               <string>9600</string>
+               <string>19200</string>
+               <string>31250</string>
+               <string>38400</string>
+               <string>57600</string>
+               <string>115200</string>
+               <string>250000</string>
+            </MenuEntries>
+            <CEntries>
+               <string>1200</string>
+               <string>2400</string>
+               <string>4800</string>
+               <string>9600</string>
+               <string>19200</string>
+               <string>31250</string>
+               <string>38400</string>
+               <string>57600</string>
+               <string>115200</string>
+               <string>250000</string>
+            </CEntries>
+         </combo>
+      </attribs>
+      <depends>
+         <depend>SD2</depend>
+      </depends>
+      <code.declaration><![CDATA[int32_t in1,in2, in3, in4, cl;
+
+msg_t ThreadX2(){
+	// setup the pins
+	// PA2 : TX
+	// PA3 : RX
+
+	palSetPadMode(GPIOA, 3, PAL_MODE_ALTERNATE(7)|PAL_MODE_INPUT);// RX
+	palSetPadMode(GPIOA, 2, PAL_MODE_OUTPUT_PUSHPULL);// TX
+	palSetPadMode(GPIOA, 2, PAL_MODE_ALTERNATE(7));// TX
+	// 9600 baud
+	static const SerialConfig sd2Cfg = {attr_baudrate, // baud
+	0, 0, 0};
+	sdStart(&SD2, &sd2Cfg);
+
+	while(!chThdShouldTerminate()){
+		// send byte, value from in1
+		uint8_t newLine = '\n';
+		sdPut(&SD2, in1>>0);
+		sdPut(&SD2, in1>>8);
+
+		sdPut(&SD2, in2>>0);
+		sdPut(&SD2, in2>>8);
+
+		sdPut(&SD2, in3>>0);
+		sdPut(&SD2, in3>>8);
+
+		sdPut(&SD2, in4>>0);
+		sdPut(&SD2, in4>>8);
+		sdPut(&SD2, cl>>0);
+		sdPut(&SD2, newLine);
+		chThdSleepMilliseconds(10);
+	}
+	sdStop(&SD2);
+	palSetPadMode(GPIOA, 2, PAL_MODE_INPUT_ANALOG);
+	palSetPadMode(GPIOA, 3, PAL_MODE_INPUT_ANALOG);
+
+}
+static msg_t ThreadX(void *arg) {
+((attr_parent *)arg)->ThreadX2();
+}
+WORKING_AREA(waThreadX, 1024);
+Thread *Thd;
+]]></code.declaration>
+      <code.init><![CDATA[in1=0;in2=0;in3=0;in4=0;cl=0;
+  Thd = chThdCreateStatic(waThreadX, sizeof(waThreadX),
+                    NORMALPRIO, ThreadX, (void *)this);
+]]></code.init>
+      <code.dispose><![CDATA[chThdTerminate(Thd);
+chThdWait(Thd);
+]]></code.dispose>
+      <code.krate><![CDATA[
+this->in1 = inlet_in1__;
+this->in2 = inlet_in2__;
+this->in3 = inlet_in3__;
+this->in4 = inlet_in4__;
+this->cl = inlet_clock__;
+
+]]></code.krate>
+   </obj.normal>
+</objdefs>
