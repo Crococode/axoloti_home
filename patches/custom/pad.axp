@@ -1,0 +1,271 @@
+<patch-1.0>
+   <obj type="osc/pwm" sha="d157b5424d365fe9d0dbb9b8c6cffd0e9a528afe" uuid="a6b40ff63f161d8bac8ea2eba5b0dbffcf49b472" name="pwm_1" x="196" y="0">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="filter/vcf3" sha="2a5cccf4517f54d2450ab7518925f49e4c41c837" uuid="92455c652cd098cbb682a5497baa18abbf2ef865" name="vcf3_1" x="462" y="0">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="reso" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="spat/pan m" sha="f7012465833160bfc83de84d1271874269790807" uuid="f6c6c0d7224841d9d76962e64d7f779d8194b7f9" name="pan_1" x="574" y="14">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" sha="c27566f972d15f25252f61b5cff014a3edce9706" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="798" y="14">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="midi/in/keyb" sha="d2b06e818348b14523c68fd021077192860093c0" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="0" y="28">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="spat/pan m" sha="f7012465833160bfc83de84d1271874269790807" uuid="f6c6c0d7224841d9d76962e64d7f779d8194b7f9" name="pan_2" x="574" y="70">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="osc/tri" sha="e7066d3dcd0e52be1613be8b5ccc96acee0ed064" uuid="905879afa8256b0ca207557d656949e476ca6f16" name="tri_1" x="196" y="126">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="spat/pan m" sha="f7012465833160bfc83de84d1271874269790807" uuid="f6c6c0d7224841d9d76962e64d7f779d8194b7f9" name="pan_3" x="574" y="126">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 7 g" sha="c94ecf7361ef3ac896775e5cfcd884e9f28f364d" uuid="79bdb895977ba94ec986830c6f89b503ee27109a" name="mix_1" x="686" y="126">
+      <params>
+         <frac32.u.map name="gain1" value="0.0"/>
+         <frac32.u.map name="gain2" value="0.0"/>
+         <frac32.u.map name="gain3" value="0.0"/>
+         <frac32.u.map name="gain4" value="0.0"/>
+         <frac32.u.map name="gain5" value="0.0"/>
+         <frac32.u.map name="gain6" value="0.0"/>
+         <frac32.u.map name="gain7" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 7 g" sha="c94ecf7361ef3ac896775e5cfcd884e9f28f364d" uuid="79bdb895977ba94ec986830c6f89b503ee27109a" name="mix_2" x="812" y="126">
+      <params>
+         <frac32.u.map name="gain1" value="8.5"/>
+         <frac32.u.map name="gain2" value="0.0"/>
+         <frac32.u.map name="gain3" value="0.0"/>
+         <frac32.u.map name="gain4" value="0.0"/>
+         <frac32.u.map name="gain5" value="0.0"/>
+         <frac32.u.map name="gain6" value="0.0"/>
+         <frac32.u.map name="gain7" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="filter/vcf3" sha="2a5cccf4517f54d2450ab7518925f49e4c41c837" uuid="92455c652cd098cbb682a5497baa18abbf2ef865" name="vcf3_2" x="462" y="140">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="reso" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/phasor compl" sha="c95d1332c224aad738fb4504cb00706af8221028" uuid="11940ece0e29f3fae0d3c8e1fdabd63cacac5b48" name="phasor_1" x="196" y="224">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="lfo/sine" sha="a2851b3d62ed0faceefc98038d9571422f0ce260" uuid="75f7330c26a13953215dccc3b7b9008545c9daa9" name="sine_1" x="350" y="238">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="seq/lfsrseq" sha="384c75bfad73e9300ba3e7fc69aa71bf2fe8b25e" uuid="6f09865209e7038e213f1d13f76b03874999eea9" name="lfsrseq_1" x="42" y="266">
+      <params/>
+      <attribs>
+         <combo attributeName="polynomial" selection="0x9"/>
+      </attribs>
+   </obj>
+   <obj type="noise/pink oct" sha="7facef3f51b342f663be4fdfd288f1f893ef0866" uuid="972351c4c2b2b4e358c64a64d119b5ddfa074f8e" name="pink_1" x="588" y="280">
+      <params/>
+      <attribs>
+         <combo attributeName="octaves" selection="1"/>
+      </attribs>
+   </obj>
+   <obj type="math/-" sha="50b9299d5a370749aa9d6cfdb949bf3191a1f68" uuid="3280bb759e9fc189e134300e48dda7e903c9a110" name="-_1" x="462" y="294">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="lfo/saw down" sha="2a84a3f10fa95e49f9b9cff209cbe7f6b5e1f9ea" uuid="d831d6b82b3d559c3ba7b1b487fb292d7998fd08" name="saw_1" x="350" y="322">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="env/adsr m" sha="1f562efbdacf6ce50c72a52bef93223b46fed8e3" uuid="98bd39fb828c392b28126d259cb5175e6f6ea34b" name="adsr_1" x="182" y="336">
+      <params>
+         <frac32.s.map name="a" value="-33.0"/>
+         <frac32.s.map name="d" value="32.0"/>
+         <frac32.u.map name="s" value="64.0"/>
+         <frac32.s.map name="r" value="43.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="env/adsr m" sha="1f562efbdacf6ce50c72a52bef93223b46fed8e3" uuid="98bd39fb828c392b28126d259cb5175e6f6ea34b" name="adsr_2" x="252" y="336">
+      <params>
+         <frac32.s.map name="a" value="-33.0"/>
+         <frac32.s.map name="d" value="32.0"/>
+         <frac32.u.map name="s" value="64.0"/>
+         <frac32.s.map name="r" value="43.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="stomps/chorus1" uuid="308d235b433d167a0251a5a7ae02cb683bb5f1a1" name="obj_3" x="490" y="462">
+      <params>
+         <bool32.tgl name="on" value="0"/>
+         <frac32.u.map name="depth" value="7.0"/>
+         <frac32.s.map name="speed" value="-41.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="stomps/wah1" uuid="eb28bd544dee7a95669751c7c8a360f97095b9c0" name="obj_1" x="392" y="476">
+      <params>
+         <bool32.tgl name="on" value="0"/>
+         <frac32.u.map name="freq" value="0.0"/>
+         <frac32.u.map name="flt:reso" value="58.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="stomps/delay" uuid="1cb9ef688a1fc2dca9d8c57c70ad14c60b4a8630" name="obj_2" x="588" y="476">
+      <params>
+         <bool32.tgl name="on" value="0"/>
+         <frac32.u.map name="fdbk" value="16.5"/>
+         <frac32.u.map name="time" value="13.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="obj_1" outlet="out"/>
+         <dest obj="obj_3" inlet="in"/>
+      </net>
+      <net>
+         <source obj="obj_2" outlet="out"/>
+         <dest obj="mix_2" inlet="in7"/>
+      </net>
+      <net>
+         <source obj="obj_3" outlet="R"/>
+         <dest obj="obj_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="mix_2" outlet="out"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+      <net>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="out_1" inlet="left"/>
+      </net>
+      <net>
+         <source obj="pan_1" outlet="left"/>
+         <dest obj="mix_1" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="pan_1" outlet="right"/>
+         <dest obj="mix_2" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="obj_3" outlet="L"/>
+         <dest obj="mix_1" inlet="in7"/>
+      </net>
+      <net>
+         <source obj="pan_2" outlet="left"/>
+         <dest obj="mix_1" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="pan_2" outlet="right"/>
+         <dest obj="mix_2" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="keyb_1" outlet="note"/>
+         <dest obj="pwm_1" inlet="pitch"/>
+         <dest obj="sine_1" inlet="pitch"/>
+         <dest obj="saw_1" inlet="pitch"/>
+      </net>
+      <net>
+         <source obj="vcf3_1" outlet="out"/>
+         <dest obj="pan_1" inlet="i1"/>
+      </net>
+      <net>
+         <source obj="vcf3_2" outlet="out"/>
+         <dest obj="pan_2" inlet="i1"/>
+         <dest obj="obj_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="pwm_1" outlet="wave"/>
+         <dest obj="vcf3_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="pink_1" outlet="out"/>
+         <dest obj="pan_3" inlet="i1"/>
+      </net>
+      <net>
+         <source obj="pan_3" outlet="left"/>
+         <dest obj="mix_1" inlet="in3"/>
+      </net>
+      <net>
+         <source obj="pan_3" outlet="right"/>
+         <dest obj="mix_2" inlet="in3"/>
+      </net>
+      <net>
+         <source obj="keyb_1" outlet="gate"/>
+         <dest obj="lfsrseq_1" inlet="trig"/>
+         <dest obj="adsr_1" inlet="gate"/>
+         <dest obj="adsr_2" inlet="gate"/>
+      </net>
+      <net>
+         <dest obj="tri_1" inlet="pitch"/>
+         <dest obj="phasor_1" inlet="pitch"/>
+      </net>
+      <net>
+         <source obj="phasor_1" outlet="phasor0"/>
+         <dest obj="mix_1" inlet="in4"/>
+      </net>
+      <net>
+         <source obj="tri_1" outlet="wave"/>
+         <dest obj="vcf3_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="adsr_1" outlet="env"/>
+         <dest obj="vcf3_1" inlet="pitch"/>
+      </net>
+      <net>
+         <source obj="adsr_2" outlet="env"/>
+         <dest obj="vcf3_2" inlet="pitch"/>
+      </net>
+      <net>
+         <source obj="sine_1" outlet="wave"/>
+         <dest obj="pan_1" inlet="c"/>
+         <dest obj="-_1" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="saw_1" outlet="wave"/>
+         <dest obj="pan_3" inlet="c"/>
+         <dest obj="-_1" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="-_1" outlet="out"/>
+         <dest obj="pan_2" inlet="c"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>387</x>
+      <y>0</y>
+      <width>938</width>
+      <height>728</height>
+   </windowPos>
+</patch-1.0>

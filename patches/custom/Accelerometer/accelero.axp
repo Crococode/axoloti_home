@@ -1,0 +1,91 @@
+<patch-1.0 appVersion="1.0.9">
+   <obj type="ant/gpio/i2c/accelorometer" uuid="59ac58ed-19fe-436d-b454-4308f8d69620" name="accelorometer_1" x="14" y="28">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_1" x="308" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_2" x="392" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_3" x="476" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="kfilter/lowpass" uuid="4f0d68b39b6f6b1c1d371b028d84391d14062d68" name="lowpass_1" x="630" y="112">
+      <params>
+         <frac32.s.map name="freq" value="-64.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/sine lin" uuid="6a4458d598c9b8634b469d1a6e7f87971b5932f" name="sine_1" x="742" y="112">
+      <params>
+         <frac32.u.map name="freq" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 1 g" uuid="e6982841c1bf323ee2062a4b6cc2737adafbd668" name="mix_2" x="854" y="112">
+      <params>
+         <frac32.u.map name="gain1" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="966" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_5" x="630" y="280">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_4" x="714" y="280">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="accelorometer_1" outlet="x_"/>
+         <dest obj="chart_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="accelorometer_1" outlet="y_"/>
+         <dest obj="chart_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="accelorometer_1" outlet="z_"/>
+         <dest obj="chart_3" inlet="in"/>
+      </net>
+      <net>
+         <source obj="accelorometer_1" outlet="abs"/>
+         <dest obj="lowpass_1" inlet="in"/>
+         <dest obj="chart_5" inlet="in"/>
+      </net>
+      <net>
+         <source obj="sine_1" outlet="wave"/>
+         <dest obj="mix_2" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="lowpass_1" outlet="out"/>
+         <dest obj="sine_1" inlet="freq"/>
+         <dest obj="chart_4" inlet="in"/>
+      </net>
+      <net>
+         <source obj="mix_2" outlet="out"/>
+         <dest obj="out_1" inlet="right"/>
+         <dest obj="out_1" inlet="left"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>214</x>
+      <y>41</y>
+      <width>1114</width>
+      <height>656</height>
+   </windowPos>
+</patch-1.0>

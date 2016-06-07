@@ -1,0 +1,103 @@
+<patch-1.0 appVersion="1.0.9">
+   <patchobj type="patch/object" uuid="3724272af4eccd4247540a60056c73eb92da8e49" name="object_1" x="154" y="42">
+      <params/>
+      <attribs>
+         <combo attributeName="device" selection="din"/>
+         <combo attributeName="output" selection="internal port 1"/>
+         <spinner attributeName="channel" value="1"/>
+      </attribs>
+      <object id="patch/object" uuid="3724272af4eccd4247540a60056c73eb92da8e49">
+         <sDescription>Ableton Push controller</sDescription>
+         <author>Mark Harris</author>
+         <license>GPL</license>
+         <helpPatch>push.axh</helpPatch>
+         <inlets/>
+         <outlets>
+            <bool32 name="outlet1"/>
+         </outlets>
+         <displays/>
+         <params/>
+         <attribs>
+            <combo name="device">
+               <MenuEntries>
+                  <string>din</string>
+                  <string>usb host port 1</string>
+                  <string>usb host port 2</string>
+                  <string>usb host port 3</string>
+                  <string>usb host port 4</string>
+                  <string>internal port 1</string>
+                  <string>internal port 2</string>
+                  <string>usb device port 1</string>
+               </MenuEntries>
+               <CEntries>
+                  <string>MIDI_DEVICE_DIN, 1</string>
+                  <string>MIDI_DEVICE_USB_HOST, 1</string>
+                  <string>MIDI_DEVICE_USB_HOST, 2</string>
+                  <string>MIDI_DEVICE_USB_HOST, 3</string>
+                  <string>MIDI_DEVICE_USB_HOST, 4</string>
+                  <string>MIDI_DEVICE_INTERNAL, 1</string>
+                  <string>MIDI_DEVICE_INTERNAL, 2</string>
+                  <string>MIDI_DEVICE_USB_DEVICE, 1</string>
+               </CEntries>
+            </combo>
+            <combo name="output">
+               <MenuEntries>
+                  <string>din</string>
+                  <string>usb host port 1</string>
+                  <string>usb host port 2</string>
+                  <string>usb host port 3</string>
+                  <string>usb host port 4</string>
+                  <string>internal port 1</string>
+                  <string>internal port 2</string>
+                  <string>usb device port 1</string>
+               </MenuEntries>
+               <CEntries>
+                  <string>MIDI_DEVICE_DIN, 1</string>
+                  <string>MIDI_DEVICE_USB_HOST, 1</string>
+                  <string>MIDI_DEVICE_USB_HOST, 2</string>
+                  <string>MIDI_DEVICE_USB_HOST, 3</string>
+                  <string>MIDI_DEVICE_USB_HOST, 4</string>
+                  <string>MIDI_DEVICE_INTERNAL, 1</string>
+                  <string>MIDI_DEVICE_INTERNAL, 2</string>
+                  <string>MIDI_DEVICE_USB_DEVICE, 1</string>
+               </CEntries>
+            </combo>
+            <spinner name="channel" MinValue="1" MaxValue="16" DefaultValue="0"/>
+         </attribs>
+         <includes>
+            <include>./push/axo_push.h</include>
+         </includes>
+         <code.declaration><![CDATA[ Push _push; ]]></code.declaration>
+         <code.init><![CDATA[ PushInit(_push); 
+        PushDevice(_push,(midi_device_t) attr_device);
+        PushNoteOutput(_push,(midi_device_t) attr_output);
+]]></code.init>
+         <code.krate><![CDATA[ PushControlRateHandler(_push); ]]></code.krate>
+         <code.midihandler><![CDATA[ PushMidiInMsgHandler(_push,dev,port,status,data1,data2); ]]></code.midihandler>
+      </object>
+   </patchobj>
+   <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="14" y="126">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_1" x="294" y="140">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="keyb_1" outlet="note"/>
+         <dest obj="chart_1" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>316</x>
+      <y>81</y>
+      <width>400</width>
+      <height>400</height>
+   </windowPos>
+</patch-1.0>

@@ -1,0 +1,45 @@
+<patch-1.0>
+   <obj type="midi/in/keyb" sha="d2b06e818348b14523c68fd021077192860093c0" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="14" y="14">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 7 g" sha="c94ecf7361ef3ac896775e5cfcd884e9f28f364d" uuid="79bdb895977ba94ec986830c6f89b503ee27109a" name="mix_1" x="686" y="42">
+      <params>
+         <frac32.u.map name="gain1" value="0.0"/>
+         <frac32.u.map name="gain2" value="0.0"/>
+         <frac32.u.map name="gain3" value="0.0"/>
+         <frac32.u.map name="gain4" value="0.0"/>
+         <frac32.u.map name="gain5" value="0.0"/>
+         <frac32.u.map name="gain6" value="0.0"/>
+         <frac32.u.map name="gain7" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" sha="c27566f972d15f25252f61b5cff014a3edce9706" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="798" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="audio/outconfig" sha="b005d810ffcd8fd1b07342bb194377d6d94e64e2" uuid="f4fa7e864a5446fc3e4527e5ef6732f283a9d43c" name="outconfig_1" x="798" y="140">
+      <params/>
+      <attribs>
+         <combo attributeName="headphones" selection="-54dB"/>
+      </attribs>
+   </obj>
+   <nets>
+      <net>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="out_1" inlet="left"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>389</x>
+      <y>0</y>
+      <width>938</width>
+      <height>728</height>
+   </windowPos>
+</patch-1.0>

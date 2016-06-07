@@ -1,0 +1,200 @@
+<patch-1.0>
+   <obj type="harmony/note quantizer" sha="13431d42028aa183f45816ccf88d37464b5ef22b" uuid="d5343a4fea87a3e4f4dae20287226084550ea8d3" name="note_1" x="112" y="0">
+      <params>
+         <bin12 name="b12" value="4095"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="disp/note" sha="47a060e4a7fa766d1de9cf03c8aa236d79be3440" uuid="ce3190ad98b73b468f22221f555b01feee03226a" name="note_2" x="280" y="14">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="midi/in/keyb" sha="d2b06e818348b14523c68fd021077192860093c0" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="0" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="env/adsr m" sha="1f562efbdacf6ce50c72a52bef93223b46fed8e3" uuid="98bd39fb828c392b28126d259cb5175e6f6ea34b" name="adsr_1" x="392" y="42">
+      <params>
+         <frac32.s.map name="a" value="0.0"/>
+         <frac32.s.map name="d" value="3.0"/>
+         <frac32.u.map name="s" value="31.0"/>
+         <frac32.s.map name="r" value="-31.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 7 g" sha="c94ecf7361ef3ac896775e5cfcd884e9f28f364d" uuid="79bdb895977ba94ec986830c6f89b503ee27109a" name="mix_1" x="686" y="42">
+      <params>
+         <frac32.u.map name="gain1" value="19.5"/>
+         <frac32.u.map name="gain2" value="21.0"/>
+         <frac32.u.map name="gain3" value="16.0"/>
+         <frac32.u.map name="gain4" value="0.0"/>
+         <frac32.u.map name="gain5" value="0.0"/>
+         <frac32.u.map name="gain6" value="0.0"/>
+         <frac32.u.map name="gain7" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" sha="c27566f972d15f25252f61b5cff014a3edce9706" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="798" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="filter/vcf3" sha="2a5cccf4517f54d2450ab7518925f49e4c41c837" uuid="92455c652cd098cbb682a5497baa18abbf2ef865" name="vcf3_1" x="476" y="56">
+      <params>
+         <frac32.s.map name="pitch" value="-14.0"/>
+         <frac32.u.map name="reso" value="29.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="sel/sel fb 16" sha="6f50fda64d42de1ad6530b4a833a42c03c18e444" uuid="f4aa3eb141915b6fc722e576dde344a226a022ac" name="sel_2" x="98" y="98">
+      <params>
+         <frac32.s.mapvsl name="b0" value="40.0"/>
+         <frac32.s.mapvsl name="b1" value="-10.0"/>
+         <frac32.s.mapvsl name="b2" value="-24.0"/>
+         <frac32.s.mapvsl name="b3" value="15.0"/>
+         <frac32.s.mapvsl name="b4" value="7.0"/>
+         <frac32.s.mapvsl name="b5" value="-6.0"/>
+         <frac32.s.mapvsl name="b6" value="34.0"/>
+         <frac32.s.mapvsl name="b7" value="-21.0"/>
+         <frac32.s.mapvsl name="b8" value="4.0"/>
+         <frac32.s.mapvsl name="b9" value="15.0"/>
+         <frac32.s.mapvsl name="b10" value="30.0"/>
+         <frac32.s.mapvsl name="b11" value="-8.0"/>
+         <frac32.s.mapvsl name="b12" value="15.0"/>
+         <frac32.s.mapvsl name="b13" value="27.0"/>
+         <frac32.s.mapvsl name="b14" value="-9.0"/>
+         <frac32.s.mapvsl name="b15" value="29.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/i radio 8 v" sha="a2ed8a60e7db97fda888b7f7c66aa23711070918" uuid="577436e6982cb8ac1f816144195641eeb6846f79" name="i_1" x="0" y="112">
+      <params>
+         <int32.vradio name="value" value="7"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/phasor" sha="343e0dfbaa48c69032d959ee1e7398e45000e0bf" uuid="e5553f226015bf75f4fdc3faa39be1bee4f84044" name="phasor_1" x="280" y="126">
+      <params>
+         <frac32.s.map name="pitch" value="-12.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="edrum/hh" uuid="ce7c6f75d1949f3d1359eb68e47d024f794eda90" name="obj_1" x="476" y="210">
+      <params>
+         <frac32.s.map name="env" value="-13.0"/>
+         <frac32.s.map name="bpf:pitch" value="12.0"/>
+         <frac32.u.map name="bpf:reso" value="10.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="sel/sel 4l 16 4t" sha="89be7e81a9dedc03f3eabe86ca9404f9bc5612f5" uuid="c6c27927509490624cd957ede07ffa245f88eb54" name="sel_1" x="98" y="280">
+      <params>
+         <int2x16 name="t1" value="0"/>
+         <int2x16 name="t2" value="269225996"/>
+         <int2x16 name="t3" value="1090537488"/>
+         <int2x16 name="t4" value="50540739"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="edrum/bd1" uuid="4e393e2ef3f7c3f6286700b7b85932dfbb43bdc1" name="obj_2" x="476" y="364">
+      <params>
+         <frac32.s.map name="d1" value="-10.0"/>
+         <frac32.s.map name="lp1" value="2.0"/>
+         <frac32.s.map name="d2" value="21.0"/>
+         <frac32.u.map name="amt" value="60.5"/>
+         <frac32.s.map name="sine_1" value="-35.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" uuid="de6909eb64db13af5b43f979a4c130024b3a4793" name="square_1" x="56" y="434">
+      <params>
+         <frac32.s.map name="pitch" value="6.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="logic/counter" sha="519c79f42a7c84352830b08e68696ecbf5d0bd52" uuid="7a141ba82230e54e5f5cd12da5dbe5a74ba854a5" name="counter_1" x="182" y="434">
+      <params>
+         <int32 name="maximum" value="16"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="disp/ibar 16" sha="6998eafb11a17e8569492b9ac4fa9710eb907cb8" uuid="302bfed4cde8894229679ce81f6b8a5c5212dd98" name="ibar_1" x="280" y="434">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="out_1" inlet="left"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="out"/>
+         <dest obj="mix_1" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o4"/>
+         <dest obj="obj_2" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="obj_2" outlet="out"/>
+         <dest obj="mix_1" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o3"/>
+         <dest obj="obj_1" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="phasor_1" outlet="phasor"/>
+         <dest obj="vcf3_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o2"/>
+         <dest obj="adsr_1" inlet="gate"/>
+      </net>
+      <net>
+         <source obj="square_1" outlet="wave"/>
+         <dest obj="counter_1" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="adsr_1" outlet="env"/>
+         <dest obj="sel_2" inlet="def"/>
+      </net>
+      <net>
+         <source obj="sel_2" outlet="o"/>
+         <dest obj="vcf3_1" inlet="pitch"/>
+      </net>
+      <net>
+         <source obj="vcf3_1" outlet="out"/>
+         <dest obj="mix_1" inlet="in3"/>
+      </net>
+      <net>
+         <source obj="keyb_1" outlet="note"/>
+         <dest obj="note_1" inlet="note"/>
+      </net>
+      <net>
+         <source obj="note_1" outlet="note"/>
+         <dest obj="phasor_1" inlet="pitch"/>
+         <dest obj="note_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="i_1" outlet="out"/>
+         <dest obj="note_1" inlet="offset"/>
+      </net>
+      <net>
+         <source obj="counter_1" outlet="o"/>
+         <dest obj="ibar_1" inlet="in"/>
+         <dest obj="sel_1" inlet="in"/>
+         <dest obj="sel_2" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>389</x>
+      <y>0</y>
+      <width>938</width>
+      <height>728</height>
+   </windowPos>
+</patch-1.0>

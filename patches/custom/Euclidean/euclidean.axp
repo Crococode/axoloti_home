@@ -1,0 +1,59 @@
+<patch-1.0 appVersion="1.0.9">
+   <obj type="./euclidean_sub_noMidi" uuid="acca34e0-c5cc-4034-8c99-bb10864e3f29" name="euclidean_sub_noMidi_1" x="420" y="14">
+      <params>
+         <int32.hradio name="i_1" MidiCC="1" value="7"/>
+         <frac32.s.map name="obj_1:d1" MidiCC="11" value="-46.0"/>
+         <frac32.s.map name="obj_1:lp1" MidiCC="12" value="-35.0"/>
+         <frac32.s.map name="obj_1:d2" MidiCC="13" value="1.0"/>
+         <frac32.s.map name="obj_1:sine_1" MidiCC="14" value="-16.0"/>
+         <int32.hradio name="i_5" MidiCC="5" value="5"/>
+         <int32.hradio name="i_11" MidiCC="4" value="0"/>
+         <frac32.s.map name="obj_2:env" MidiCC="21" value="-28.0"/>
+         <frac32.s.map name="obj_2:bpf:pitch" MidiCC="22" value="47.0"/>
+         <int32.hradio name="i_7" MidiCC="3" value="3"/>
+         <int32.hradio name="i_10" MidiCC="2" value="0"/>
+         <frac32.s.map name="obj_3:d1" MidiCC="31" value="-22.0"/>
+         <frac32.s.map name="obj_3:lp1" MidiCC="32" value="-35.0"/>
+         <frac32.s.map name="obj_3:d2" MidiCC="33" value="1.0"/>
+         <frac32.s.map name="obj_3:sine_1" MidiCC="34" value="-25.0"/>
+         <int32.hradio name="i_9" MidiCC="7" value="3"/>
+         <int32.hradio name="i_8" MidiCC="6" value="2"/>
+         <frac32.s.map name="obj_4:env" MidiCC="41" value="19.0"/>
+         <frac32.s.map name="obj_4:bpf:pitch" MidiCC="42" value="19.0"/>
+         <frac32.s.map name="dial_2" MidiCC="9" value="3.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="midi/in/cc i any" uuid="a5a8957c081888a8175ecd4630479533958e488b" name="cc_1" x="56" y="280">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/ibar 16" uuid="302bfed4cde8894229679ce81f6b8a5c5212dd98" name="ibar_1" x="196" y="294">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/ibar 16" uuid="302bfed4cde8894229679ce81f6b8a5c5212dd98" name="ibar_2" x="196" y="364">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="cc_1" outlet="value"/>
+         <dest obj="ibar_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="cc_1" outlet="cc"/>
+         <dest obj="ibar_2" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>-8</x>
+      <y>-8</y>
+      <width>1382</width>
+      <height>744</height>
+   </windowPos>
+</patch-1.0>

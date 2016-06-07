@@ -1,0 +1,56 @@
+<patch-1.0>
+   <obj type="mix/mix 2 g" sha="921aefdda41b92a27cc93c53b5154554d0ce6d3b" uuid="221f038da51943034a75e442c90624fcebfe6112" name="mix_1" x="378" y="14">
+      <params>
+         <frac32.u.map name="gain1" value="32.0"/>
+         <frac32.u.map name="gain2" value="32.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/saw" sha="fe2c3c02396657dfbc225c73f9340ad0c4c3eea6" uuid="739ecc36017ef3249479b8f01716b8bbfba9abc1" name="saw_1" x="56" y="28">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="fx/flanger" uuid="2973631847c569e35ca947106caf10356f93afee" name="obj_1" x="154" y="28">
+      <params>
+         <frac32.u.map name="depth" value="20.0"/>
+         <frac32.u.map name="fdbk" value="40.0"/>
+         <frac32.s.map name="speed" value="-56.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="filter/vcf3" sha="2a5cccf4517f54d2450ab7518925f49e4c41c837" uuid="92455c652cd098cbb682a5497baa18abbf2ef865" name="vcf3_1" x="252" y="28">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="reso" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="saw_1" outlet="wave"/>
+         <dest obj="obj_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="out"/>
+         <dest obj="vcf3_1" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+      <MidiChannel>1</MidiChannel>
+      <NPresets>8</NPresets>
+      <NPresetEntries>32</NPresetEntries>
+      <NModulationSources>8</NModulationSources>
+      <NModulationTargetsPerSource>8</NModulationTargetsPerSource>
+      <Author></Author>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>212</x>
+      <y>43</y>
+      <width>612</width>
+      <height>400</height>
+   </windowPos>
+</patch-1.0>

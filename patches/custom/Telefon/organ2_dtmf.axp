@@ -1,0 +1,65 @@
+<patch-1.0 appVersion="1.0.9">
+   <obj type="noise/pink" sha="60f2be0f8974717ae4480e80f70bfae0bb3f01d5" name="pnoise_1" x="14" y="14">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/muls 16" uuid="c72d593cdf22887ca55f6da46ea788d091a21d19" name="muls_1" x="224" y="14">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="fx/chorus" sha="3389201e65c0bb381a531005c14fd69da7a3e9ef" name="chorus21" x="336" y="14">
+      <params>
+         <frac32.u.map name="depth" value="1.5"/>
+         <frac32.s.map name="speed" value="-27.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" sha="b933bb91801a126126313c11f773158b5ca2face" name="dacconfig1" x="448" y="14">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="./organvoice2_dtmf" uuid="bdb31887-c365-4083-ae93-c621006cc8e9" name="organvoice2_dtmf_1" x="140" y="70">
+      <params>
+         <frac32.s.map name="envd1" value="-48.0"/>
+         <frac32.u.map name="mix_2:gain1" value="6.0"/>
+         <frac32.u.map name="mix_2:gain2" value="32.0"/>
+         <frac32.u.map name="*c_1" value="3.989999771118164"/>
+         <frac32.u.map name="mix_1:gain1" value="14.5"/>
+         <frac32.u.map name="mix_1:gain2" value="14.5"/>
+         <frac32.u.map name="mix_1:gain3" value="13.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="chorus21" outlet="L"/>
+         <dest obj="dacconfig1" inlet="left"/>
+      </net>
+      <net>
+         <source obj="chorus21" outlet="R"/>
+         <dest obj="dacconfig1" inlet="right"/>
+      </net>
+      <net>
+         <source obj="muls_1" outlet="out"/>
+         <dest obj="chorus21" inlet="in"/>
+      </net>
+      <net>
+         <source obj="pnoise_1" outlet="out"/>
+         <dest obj="organvoice2_dtmf_1" inlet="exci"/>
+      </net>
+      <net>
+         <source obj="organvoice2_dtmf_1" outlet="o"/>
+         <dest obj="muls_1" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>510</x>
+      <y>50</y>
+      <width>761</width>
+      <height>637</height>
+   </windowPos>
+</patch-1.0>
