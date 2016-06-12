@@ -1,0 +1,102 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="dtmf_code" uuid="f3e63695-e1df-4e1c-a5c0-cba350af8400">
+      <sDescription>decodes ouput of a dmtf converter chip MT8870 connected to four gpio input pins.</sDescription>
+      <author>Crococode</author>
+      <license>BSD</license>
+      <helpPatch>math.axh</helpPatch>
+      <inlets>
+         <frac32 name="i1" description="in1"/>
+         <frac32 name="i2"/>
+         <frac32 name="i3"/>
+         <frac32 name="i4"/>
+         <int32 name="shift"/>
+         <bool32 name="trig"/>
+      </inlets>
+      <outlets>
+         <frac32 name="out"/>
+         <bool32 name="tone"/>
+         <bool32 name="code"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs>
+         <combo name="code">
+            <MenuEntries/>
+            <CEntries/>
+         </combo>
+      </attribs>
+      <code.declaration><![CDATA[const int32_t thr = (43<<20);
+int32_t out;
+int32_t hit;
+int32_t trigged;
+static const uint32_t LENGTHPOW = (attr_code);
+static const uint32_t LENGTH = (1<<attr_code);
+static const uint32_t LENGTHMASK = ((1<<attr_code)-1);
+static const uint32_t BITS = 16;
+static const uint32_t GAIN = 12;]]></code.declaration>
+      <code.init><![CDATA[out = 0;
+trigged = 0;
+hit = 0;]]></code.init>
+      <code.krate><![CDATA[if (inlet_trig>thr && !trigged)
+{
+	if (inlet_i4<thr)
+	{
+	if (inlet_i3<thr)
+	{
+	if (inlet_i2<thr && inlet_i1>thr){out = ((36-inlet_is)<<20);}
+	if (inlet_i2>thr && inlet_i1<thr){out = ((37-inlet_is)<<20);}
+	if (inlet_i2>thr && inlet_i1>thr){out = ((38-inlet_is)<<20);}
+	}
+	else
+	{
+	if (inlet_i2<thr && inlet_i1<thr){out = ((39-inlet_is)<<20);}
+	if (inlet_i2<thr && inlet_i1>thr){out = ((40-inlet_is)<<20);}
+	if (inlet_i2>thr && inlet_i1<thr){out = ((41-inlet_is)<<20);}
+	if (inlet_i2>thr && inlet_i1>thr){out = ((42-inlet_is)<<20);}
+	}
+	}
+	else
+	{
+	if (inlet_i3<thr)
+	{
+	if (inlet_i2<thr && inlet_i1<thr){out = ((43-inlet_is)<<20);}
+	if (inlet_i2<thr && inlet_i1>thr){out = ((44-inlet_is)<<20);}
+	if (inlet_i2>thr && inlet_i1<thr){out = ((45-inlet_is)<<20);}
+	if (inlet_i2>thr && inlet_i1>thr){out = ((46-inlet_is)<<20);}
+	}
+	else
+	{
+	if (inlet_i2<thr && inlet_i1<thr){out = ((47-inlet_is)<<20);}	
+	}
+	}
+	trigged = 1;
+
+	if(hit == 0 && out == val1){hit++;}
+	if(hit == 1 && out == val2){hit++;}
+	if(hit == 2 && out == val3)
+	{
+		hit=0;
+		outlet_code=1;
+	}
+	else
+	{
+		outlet_code=0;
+	}
+}
+
+outlet_out = out;
+if (trigged)
+{
+	outlet_tone = 1;
+	if(inlet_trig<thr)
+	{
+		trigged = 0;
+	}
+}
+else
+{
+	outlet_tone = 0;
+}
+]]></code.krate>
+   </obj.normal>
+</objdefs>
