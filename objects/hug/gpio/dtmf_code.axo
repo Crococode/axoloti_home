@@ -20,20 +20,15 @@
       <displays/>
       <params/>
       <attribs>
-         <combo name="code">
-            <MenuEntries/>
-            <CEntries/>
-         </combo>
+         <text name="code"/>
       </attribs>
       <code.declaration><![CDATA[const int32_t thr = (43<<20);
 int32_t out;
 int32_t hit;
 int32_t trigged;
-static const uint32_t LENGTHPOW = (attr_code);
-static const uint32_t LENGTH = (1<<attr_code);
-static const uint32_t LENGTHMASK = ((1<<attr_code)-1);
-static const uint32_t BITS = 16;
-static const uint32_t GAIN = 12;]]></code.declaration>
+int32_t val1;
+int32_t val2;
+int32_t val3;]]></code.declaration>
       <code.init><![CDATA[out = 0;
 trigged = 0;
 hit = 0;]]></code.init>
@@ -43,30 +38,30 @@ hit = 0;]]></code.init>
 	{
 	if (inlet_i3<thr)
 	{
-	if (inlet_i2<thr && inlet_i1>thr){out = ((36-inlet_is)<<20);}
-	if (inlet_i2>thr && inlet_i1<thr){out = ((37-inlet_is)<<20);}
-	if (inlet_i2>thr && inlet_i1>thr){out = ((38-inlet_is)<<20);}
+	if (inlet_i2<thr && inlet_i1>thr){out = ((36-inlet_shift)<<20);}
+	if (inlet_i2>thr && inlet_i1<thr){out = ((37-inlet_shift)<<20);}
+	if (inlet_i2>thr && inlet_i1>thr){out = ((38-inlet_shift)<<20);}
 	}
 	else
 	{
-	if (inlet_i2<thr && inlet_i1<thr){out = ((39-inlet_is)<<20);}
-	if (inlet_i2<thr && inlet_i1>thr){out = ((40-inlet_is)<<20);}
-	if (inlet_i2>thr && inlet_i1<thr){out = ((41-inlet_is)<<20);}
-	if (inlet_i2>thr && inlet_i1>thr){out = ((42-inlet_is)<<20);}
+	if (inlet_i2<thr && inlet_i1<thr){out = ((39-inlet_shift)<<20);}
+	if (inlet_i2<thr && inlet_i1>thr){out = ((40-inlet_shift)<<20);}
+	if (inlet_i2>thr && inlet_i1<thr){out = ((41-inlet_shift)<<20);}
+	if (inlet_i2>thr && inlet_i1>thr){out = ((42-inlet_shift)<<20);}
 	}
 	}
 	else
 	{
 	if (inlet_i3<thr)
 	{
-	if (inlet_i2<thr && inlet_i1<thr){out = ((43-inlet_is)<<20);}
-	if (inlet_i2<thr && inlet_i1>thr){out = ((44-inlet_is)<<20);}
-	if (inlet_i2>thr && inlet_i1<thr){out = ((45-inlet_is)<<20);}
-	if (inlet_i2>thr && inlet_i1>thr){out = ((46-inlet_is)<<20);}
+	if (inlet_i2<thr && inlet_i1<thr){out = ((43-inlet_shift)<<20);}
+	if (inlet_i2<thr && inlet_i1>thr){out = ((44-inlet_shift)<<20);}
+	if (inlet_i2>thr && inlet_i1<thr){out = ((45-inlet_shift)<<20);}
+	if (inlet_i2>thr && inlet_i1>thr){out = ((46-inlet_shift)<<20);}
 	}
 	else
 	{
-	if (inlet_i2<thr && inlet_i1<thr){out = ((47-inlet_is)<<20);}	
+	if (inlet_i2<thr && inlet_i1<thr){out = ((47-inlet_shift)<<20);}	
 	}
 	}
 	trigged = 1;
