@@ -1,0 +1,34 @@
+<patch-1.0 appVersion="1.0.9">
+   <obj type="./dtmf_core" uuid="b388225e-1386-42a8-80d3-a717c83af782" name="dtmf_core_1" x="98" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_1" x="294" y="84">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_2" x="294" y="168">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="dtmf_core_1" outlet="trig"/>
+         <dest obj="bool_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="dtmf_core_1" outlet="code"/>
+         <dest obj="bool_2" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>93</x>
+      <y>259</y>
+      <width>642</width>
+      <height>400</height>
+   </windowPos>
+</patch-1.0>
