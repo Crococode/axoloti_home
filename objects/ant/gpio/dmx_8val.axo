@@ -1,0 +1,40 @@
+<objdefs appVersion="1.0.10">
+   <obj.normal id="dmx_8val" uuid="c2d6a6b4-ca2c-47fe-b9eb-17b38bdbf4f4">
+      <sDescription>k-rate c one-liner</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <helpPatch>script.axh</helpPatch>
+      <inlets>
+         <charptr32 name="dmxin"/>
+         <int32 name="in0"/>
+         <int32 name="in1"/>
+         <int32 name="in2"/>
+         <int32 name="in3"/>
+         <int32 name="in4"/>
+         <int32 name="in5"/>
+         <int32 name="in6"/>
+         <int32 name="in7"/>
+      </inlets>
+      <outlets/>
+      <displays/>
+      <params>
+         <int32 name="start" noLabel="true">
+            <MinValue i="0"/>
+            <MaxValue i="511"/>
+         </int32>
+      </params>
+      <attribs/>
+      <code.declaration><![CDATA[char* local;]]></code.declaration>
+      <code.init><![CDATA[local =0;]]></code.init>
+      <code.krate><![CDATA[local = (char *)inlet_dmxin;
+local [0+param_start] = (char) inlet_in0;
+local [1+param_start] = (char) inlet_in1;
+local [2+param_start] = (char) inlet_in2;
+local [3+param_start] = (char) inlet_in3;
+local [4+param_start] = (char) inlet_in4;
+local [5+param_start] = (char) inlet_in5;
+local [6+param_start] = (char) inlet_in6;
+local [7+param_start] = (char) inlet_in7;
+]]></code.krate>
+   </obj.normal>
+</objdefs>

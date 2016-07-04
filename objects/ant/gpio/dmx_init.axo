@@ -1,0 +1,86 @@
+<objdefs appVersion="1.0.9">
+   <obj.normal id="dmx_init" uuid="ccbfb5f7-cea4-498f-ba58-b5f21bc90214">
+      <sDescription>k-rate c one-liner</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <helpPatch>script.axh</helpPatch>
+      <inlets/>
+      <outlets>
+         <charptr32 name="dmx"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs>
+         <combo name="baudrate">
+            <MenuEntries>
+               <string>1200</string>
+               <string>2400</string>
+               <string>4800</string>
+               <string>9600</string>
+               <string>19200</string>
+               <string>31250</string>
+               <string>38400</string>
+               <string>57600</string>
+               <string>115200</string>
+               <string>250000</string>
+            </MenuEntries>
+            <CEntries>
+               <string>1200</string>
+               <string>2400</string>
+               <string>4800</string>
+               <string>9600</string>
+               <string>19200</string>
+               <string>31250</string>
+               <string>38400</string>
+               <string>57600</string>
+               <string>115200</string>
+               <string>250000</string>
+            </CEntries>
+         </combo>
+      </attribs>
+      <depends>
+         <depend>SD2</depend>
+      </depends>
+      <code.declaration><![CDATA[char dmx[512];
+
+
+
+msg_t ThreadX2(){
+	// setup the pins
+	// PA2 : TX
+	// PA3 : RX
+
+	palSetPadMode(GPIOA, 3, PAL_MODE_ALTERNATE(7)|PAL_MODE_INPUT);// RX
+	palSetPadMode(GPIOA, 2, PAL_MODE_OUTPUT_PUSHPULL);// TX
+	palSetPadMode(GPIOA, 2, PAL_MODE_ALTERNATE(7));// TX
+	// 9600 baud
+	static const SerialConfig sd2Cfg = {attr_baudrate, // baud
+	0, 0, 0};
+	sdStart(&SD2, &sd2Cfg);
+
+	while(!chThdShouldTerminate()){
+		// send byte, value from in1
+		uint8_t newLine = '\n';
+		for(int i = 0;i<512;i++) {
+			sdPut(&SD2, dmx[i]>>0);
+		}
+		sdPut(&SD2, newLine);
+		chThdSleepMilliseconds(1000);
+	}
+	sdStop(&SD2);
+	palSetPadMode(GPIOA, 2, PAL_MODE_INPUT_ANALOG);
+	palSetPadMode(GPIOA, 3, PAL_MODE_INPUT_ANALOG);
+
+}
+static msg_t ThreadX(void *arg) {
+((attr_parent *)arg)->ThreadX2();
+}
+WORKING_AREA(waThreadX, 1024);
+Thread *Thd;
+]]></code.declaration>
+      <code.init><![CDATA[ Thd = chThdCreateStatic(waThreadX, sizeof(waThreadX),
+                    NORMALPRIO, ThreadX, (void *)this);
+]]></code.init>
+      <code.krate><![CDATA[outlet_dmx = &dmx[0];]]></code.krate>
+   </obj.normal>
+</objdefs>
