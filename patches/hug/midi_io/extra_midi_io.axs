@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.9">
+<patch-1.0 appVersion="1.0.10">
    <comment type="patch/comment" x="14" y="14" text="Shows how to receive MIDI on pin PA3 (3.3V logic) "/>
    <comment type="patch/comment" x="294" y="14" text="send some midi on PA2"/>
    <comment type="patch/comment" x="14" y="28" text="and channel to Internal MIDI"/>
@@ -172,14 +172,17 @@ void MidiInByteHandler(uint8_t data) {
 }
 uint8_t cc;
 void loop(){
-    char ch = sdGet(&SD2);
-    cc++;
-    if(cc>10)
-    {
-    	LogTextMessage("%d",ch);
-    	cc=0;
-    }
-    MidiInByteHandler(ch);	
+	while(!sdGetWouldBlock(&SD2))
+	{
+    		char ch = sdGet(&SD2);
+    		cc++;
+    		if(cc>10)
+    		{
+    			LogTextMessage("%d",ch);
+    			cc=0;
+    		}
+    		MidiInByteHandler(ch);
+	}	
 }]]></sText>
          </text>
       </attribs>
