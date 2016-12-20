@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.9">
+<patch-1.0 appVersion="1.0.10">
    <obj type="script/script2" sha="1478c410b77725959c034de4a2456dd1198e9080" name="script2_1" x="28" y="28">
       <params/>
       <attribs>
@@ -90,7 +90,7 @@ void MidiInByteHandler(uint8_t data) {
       len = SysToMsgLength(data - 0xF0);
     }
     if (len == 1) {
-      MidiInMsgHandler(MIDI_DEVICE_INTERNAL,port,data,0,0);
+      MidiInMsgHandler(MIDI_DEVICE_DIN,port,data,0,0);
     } else {
       MidiByte0 = data;
       MidiNumData = len - 1;
@@ -103,7 +103,7 @@ void MidiInByteHandler(uint8_t data) {
       MidiByte1 = data;
       if (MidiNumData == 1) {
         // 2 byte message complete
-        MidiInMsgHandler(MIDI_DEVICE_INTERNAL,port,MidiByte0, MidiByte1,0);
+        MidiInMsgHandler(MIDI_DEVICE_DIN,port,MidiByte0, MidiByte1,0);
         //MidiInMsgHandler(MidiByte0, MidiByte1, 0);
         MidiCurData = 0;
       }
@@ -121,8 +121,11 @@ void MidiInByteHandler(uint8_t data) {
   }
 }
 void loop(){
-    char ch = sdGet(&SD2);
-    MidiInByteHandler(ch);	
+	while(!sdGetWouldBlock(&SD2))
+	{
+    		char ch = sdGet(&SD2);
+    		MidiInByteHandler(ch);	
+	}
 }]]></sText>
          </text>
       </attribs>
