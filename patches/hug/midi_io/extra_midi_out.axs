@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.9">
+<patch-1.0 appVersion="1.0.10">
    <obj type="patch/inlet f" uuid="5c585d2dcd9c05631e345ac09626a22a639d7c13" name="Note" x="140" y="28">
       <params/>
       <attribs/>
@@ -9,10 +9,12 @@
          <text attributeName="script">
             <sText><![CDATA[uint8_t i;
 uint8_t v;
+uint8_t sig;
 
 void setup(){
   i = 0;
   v = 0;
+  sig = 0;
 }
 
 void SendMidi3(uint8_t b0,uint8_t b1,uint8_t b2){
@@ -22,19 +24,27 @@ void SendMidi3(uint8_t b0,uint8_t b1,uint8_t b2){
 }
 
 void loop(){
-  chThdSleepMilliseconds(100);
-  i = (uint8_t)((this->in1)>>20);
-  v = (uint8_t)((this->in2)>>20);
-  //LogTextMessage("Sending: %d",i);
-  //LogTextMessage("Sending: %d",(uint8_t(this->in2>>20)));
-  if((uint8_t(this->in3>>26))==1)
+  i = (uint8_t)(((this->in1)>>20)&0x7F);
+  v = (uint8_t)(((this->in2)>>20)&0x7F);
+  if(((uint8_t(this->in3>>26))==1) )
   {
-  	SendMidi3(0x90,i,v);
+  	if(sig==0)
+  	{
+	  	sig=1;
+	  	SendMidi3(0x90,i,v);
+	  	//LogTextMessage("Sending ON: %d",i);
+	}
   }
   else
   {
-  	SendMidi3(0x80,i,v);
+  	if(sig ==1)
+  	{
+  		sig =0;
+  		SendMidi3(0x80,i,v);
+  		//LogTextMessage("Sending OFF: %d",i);
+  	}
   }
+} 
 }]]></sText>
          </text>
       </attribs>
