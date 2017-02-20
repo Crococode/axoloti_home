@@ -1,5 +1,5 @@
 <patch-1.0 appVersion="1.0.11">
-   <obj type="gpio/serial/config" uuid="8ec617bbe7b552a58656442e87513d8b4c69833a" name="serial.begin_1" x="14" y="14">
+   <obj type="gpio/serial/config" uuid="8ec617bbe7b552a58656442e87513d8b4c69833a" name="config_1" x="14" y="14">
       <params/>
       <attribs>
          <combo attributeName="baudrate" selection="31250"/>
@@ -19,7 +19,16 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="./../midi_io/extra_midi_in" uuid="e916eba4-d794-4d2b-91f1-e1ce2cb8df15" name="extra_midi_in_1" x="14" y="70">
+   <obj type="./../korg/OctaveShift_noWav2_extraMidi" uuid="f825e772-f9d1-4c21-aacb-543e63c30428" name="OctaveShift_noWav2_extraMidi_1" x="700" y="14">
+      <params/>
+      <attribs>
+         <combo attributeName="poly" selection="5"/>
+         <combo attributeName="midichannel" selection="inherit"/>
+         <combo attributeName="mididevice" selection="internal"/>
+         <combo attributeName="midiport" selection="1"/>
+      </attribs>
+   </obj>
+   <obj type="./../midi_io/extra_midi_in" uuid="e5bc3009-3521-4477-9882-2005c162e982" name="extra_midi_in_1" x="14" y="70">
       <params/>
       <attribs/>
    </obj>
@@ -34,33 +43,11 @@
       <params/>
       <attribs>
          <combo attributeName="device" selection="usb host port 2"/>
-         <combo attributeName="output" selection="din"/>
+         <combo attributeName="output" selection="internal port 1"/>
          <spinner attributeName="channel" value="1"/>
       </attribs>
    </obj>
-   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_1" x="434" y="112">
-      <params/>
-      <attribs/>
-   </obj>
-   <obj type="logic/and 2" uuid="c67031682f552aa0a80b23377495c51ea28a8c9c" name="and_1" x="518" y="112">
-      <params/>
-      <attribs/>
-   </obj>
-   <obj type="wave/play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_1" x="602" y="112">
-      <params/>
-      <attribs>
-         <file attributeName="fn" file="sos.wav"/>
-      </attribs>
-   </obj>
-   <obj type="audio/out left" uuid="b11a3c09b2fdd575ea8212f2ce7743d5269253b1" name="out_1" x="826" y="112">
-      <params/>
-      <attribs/>
-   </obj>
    <obj type="logic/inv" uuid="2bd44b865d3b63ff9b80862242bf5be779e3ad5" name="inv_1" x="308" y="126">
-      <params/>
-      <attribs/>
-   </obj>
-   <obj type="logic/inv" uuid="2bd44b865d3b63ff9b80862242bf5be779e3ad5" name="inv_3" x="532" y="168">
       <params/>
       <attribs/>
    </obj>
@@ -75,19 +62,6 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_2" x="434" y="182">
-      <params/>
-      <attribs/>
-   </obj>
-   <obj type="./../korg/OctaveShift_noWav2_extraMidi" uuid="fe948a33-5478-4e88-a402-6140dc06778b" name="OctaveShift_noWav2_extraMidi_1" x="406" y="266">
-      <params/>
-      <attribs>
-         <combo attributeName="poly" selection="1"/>
-         <combo attributeName="midichannel" selection="inherit"/>
-         <combo attributeName="mididevice" selection="omni"/>
-         <combo attributeName="midiport" selection="omni"/>
-      </attribs>
-   </obj>
    <nets>
       <net>
          <source obj="digital_1" outlet="out"/>
@@ -99,32 +73,15 @@
       </net>
       <net>
          <source obj="inv_1" outlet="o"/>
-         <dest obj="and_1" inlet="i1"/>
-         <dest obj="bool_1" inlet="in"/>
          <dest obj="octaveShift_1" inlet="up"/>
       </net>
       <net>
          <source obj="inv_2" outlet="o"/>
-         <dest obj="bool_2" inlet="in"/>
-         <dest obj="and_1" inlet="i2"/>
          <dest obj="octaveShift_1" inlet="down"/>
       </net>
       <net>
          <source obj="dial_1" outlet="out"/>
          <dest obj="octaveShift_1" inlet="a"/>
-      </net>
-      <net>
-         <source obj="inv_3" outlet="o"/>
-         <dest obj="play_1" inlet="stop"/>
-      </net>
-      <net>
-         <source obj="play_1" outlet="out"/>
-         <dest obj="out_1" inlet="wave"/>
-      </net>
-      <net>
-         <source obj="and_1" outlet="o"/>
-         <dest obj="play_1" inlet="start"/>
-         <dest obj="inv_3" inlet="i"/>
       </net>
       <net>
          <source obj="octaveShift_1" outlet="result"/>

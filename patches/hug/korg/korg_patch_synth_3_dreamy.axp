@@ -1,0 +1,191 @@
+<patch-1.0 appVersion="1.0.11">
+   <comment type="patch/comment" x="14" y="28" text="Supersaw synth with a convolution filter that updates with fresh gaussian noise on every note played"/>
+   <patcher type="patch/patcher" uuid="9d1ca63c-18a6-4217-b40b-22e23242634a" name="patcher_1" x="14" y="56">
+      <params>
+         <frac32.s.map name="adsr_1:a" value="-64.0"/>
+         <frac32.s.map name="adsr_1:d" value="0.0"/>
+         <frac32.u.map name="adsr_1:s" value="40.0"/>
+         <frac32.s.map name="adsr_1:r" value="31.0"/>
+         <frac32.u.map name="saw_1:detune" value="28.0"/>
+      </params>
+      <attribs>
+         <combo attributeName="poly" selection="4"/>
+         <combo attributeName="midichannel" selection="inherit"/>
+         <combo attributeName="mididevice" selection="internal"/>
+         <combo attributeName="midiport" selection="2"/>
+      </attribs>
+      <subpatch appVersion="1.0.11">
+         <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="28" y="28">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="env/adsr" uuid="d1dbcc5fa6f87b98a6a91c87fd44acee5e690bac" name="adsr_1" x="140" y="28">
+            <params>
+               <frac32.s.map name="a" onParent="true" value="-64.0"/>
+               <frac32.s.map name="d" onParent="true" value="0.0"/>
+               <frac32.u.map name="s" onParent="true" value="40.0"/>
+               <frac32.s.map name="r" onParent="true" value="34.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="math/div 4" uuid="507955275561b256e540f7205386d31545a2828f" name="div_1" x="252" y="28">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="osc/supersaw" uuid="ece83feb36cfaee7dc3964b75c485774ea0309cf" name="saw_1" x="140" y="252">
+            <params>
+               <frac32.s.map name="pitch" value="0.0"/>
+               <frac32.u.map name="detune" onParent="true" value="30.5"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="266" y="252">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet a" uuid="abd8c5fd3b0524a6630f65cad6dc27f6c58e2a3e" name="outlet_1" x="336" y="252">
+            <params/>
+            <attribs/>
+         </obj>
+         <nets>
+            <net>
+               <source obj="adsr_1" outlet="env"/>
+               <dest obj="div_1" inlet="in"/>
+            </net>
+            <net>
+               <source obj="saw_1" outlet="wave"/>
+               <dest obj="vca_1" inlet="a"/>
+            </net>
+            <net>
+               <source obj="keyb_1" outlet="gate"/>
+               <dest obj="adsr_1" inlet="gate"/>
+            </net>
+            <net>
+               <source obj="keyb_1" outlet="note"/>
+               <dest obj="saw_1" inlet="pitch"/>
+            </net>
+            <net>
+               <source obj="vca_1" outlet="o"/>
+               <dest obj="outlet_1" inlet="outlet"/>
+            </net>
+            <net>
+               <source obj="div_1" outlet="out"/>
+               <dest obj="vca_1" inlet="v"/>
+            </net>
+         </nets>
+         <settings>
+            <subpatchmode>polyphonic</subpatchmode>
+            <MidiChannel>1</MidiChannel>
+            <HasMidiChannelSelector>true</HasMidiChannelSelector>
+            <NPresets>8</NPresets>
+            <NPresetEntries>32</NPresetEntries>
+            <NModulationSources>8</NModulationSources>
+            <NModulationTargetsPerSource>8</NModulationTargetsPerSource>
+         </settings>
+         <notes><![CDATA[]]></notes>
+         <windowPos>
+            <x>0</x>
+            <y>0</y>
+            <width>646</width>
+            <height>562</height>
+         </windowPos>
+      </subpatch>
+   </patcher>
+   <obj type="filter/convolution" uuid="016dcb48-364f-4196-95e8-fbb18fe4973b" name="convolution_1" x="140" y="56">
+      <params/>
+      <attribs>
+         <objref attributeName="table" obj="t1"/>
+         <combo attributeName="attenuation" selection="12dB"/>
+         <spinner attributeName="length" value="512"/>
+      </attribs>
+   </obj>
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="mix_3" x="280" y="56">
+      <params>
+         <frac32.u.map name="amp" value="64.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="fx/chorus" uuid="1924368e7dee7fcf059747ba49ef572788028e54" name="obj_1" x="392" y="56">
+      <params>
+         <frac32.u.map name="depth" value="2.0"/>
+         <frac32.s.map name="speed" value="-19.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="392" y="182">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="table/alloc 16b" uuid="597fcaac36aa638ba120b0fbdcadcde4ad405a7e" name="t1" x="210" y="224">
+      <params/>
+      <attribs>
+         <combo attributeName="size" selection="512"/>
+         <text attributeName="init">
+            <sText><![CDATA[]]></sText>
+         </text>
+      </attribs>
+   </obj>
+   <obj type="noise/gaussian" uuid="a0f2cae6eafbfa58e1f1cb28e369824c54486f79" name="gaussian_1" x="154" y="364">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="table/record" uuid="2f8909f3691be093f0b8cf6532d4acff2dcb1a9f" name="record_1" x="252" y="364">
+      <params/>
+      <attribs>
+         <objref attributeName="table" obj="t1"/>
+      </attribs>
+   </obj>
+   <obj type="midi/in/keyb zone lru" uuid="36a44968a4f8b980273e94dca846b7544a3c45d2" name="keyb_1" x="14" y="392">
+      <params/>
+      <attribs>
+         <spinner attributeName="startNote" value="0"/>
+         <spinner attributeName="endNote" value="127"/>
+      </attribs>
+   </obj>
+   <nets>
+      <net>
+         <source obj="obj_1" outlet="L"/>
+         <dest obj="out_1" inlet="left"/>
+      </net>
+      <net>
+         <source obj="obj_1" outlet="R"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+      <net>
+         <source obj="keyb_1" outlet="gate"/>
+         <dest obj="record_1" inlet="start"/>
+      </net>
+      <net>
+         <source obj="convolution_1" outlet="out"/>
+         <dest obj="mix_3" inlet="in"/>
+      </net>
+      <net>
+         <source obj="patcher_1" outlet="outlet_1"/>
+         <dest obj="convolution_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="mix_3" outlet="out"/>
+         <dest obj="obj_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="gaussian_1" outlet="wave"/>
+         <dest obj="record_1" inlet="wave"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+      <MidiChannel>1</MidiChannel>
+      <NPresets>8</NPresets>
+      <NPresetEntries>32</NPresetEntries>
+      <NModulationSources>4</NModulationSources>
+      <NModulationTargetsPerSource>4</NModulationTargetsPerSource>
+      <Author></Author>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>516</x>
+      <y>57</y>
+      <width>783</width>
+      <height>680</height>
+   </windowPos>
+</patch-1.0>

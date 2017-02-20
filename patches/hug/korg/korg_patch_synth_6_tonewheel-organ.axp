@@ -1,0 +1,21 @@
+<patch-1.0 appVersion="1.0.11">
+   <obj type="korg_patch_synth_6_tonewheel-organ" uuid="015a4c49-f5d0-4e4b-8064-e39fb060c533" name="korg_patch_synth_6_tonewheel-organ_1" x="28" y="14">
+      <params/>
+      <attribs>
+         <combo attributeName="midichannel" selection="inherit"/>
+         <combo attributeName="mididevice" selection="internal"/>
+         <combo attributeName="midiport" selection="2"/>
+      </attribs>
+   </obj>
+   <nets/>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>394</x>
+      <y>211</y>
+      <width>400</width>
+      <height>400</height>
+   </windowPos>
+</patch-1.0>

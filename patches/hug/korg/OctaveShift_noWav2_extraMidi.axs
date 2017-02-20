@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.10">
+<patch-1.0 appVersion="1.0.11">
    <obj type="midi/in/keyb mod" uuid="abcd509d15e7d13d5381203fd2b4d0ac6fe57bb3" name="keyb_1" x="56" y="14">
       <params/>
       <attribs/>
@@ -7,7 +7,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="./../midi_io/extra_midi_out" uuid="896472ba-44f2-459c-9007-58c190e45d8d" name="extra_midi_out_1" x="490" y="28">
+   <obj type="./../midi_io/extra_midi_out" uuid="3d7c2f8a-97ab-43e3-a6e3-4bab322ea63e" name="extra_midi_out_1" x="490" y="28">
       <params/>
       <attribs/>
    </obj>
@@ -15,10 +15,10 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="midi/out/note" uuid="a76ae870da278cbbce5501a57ce7bd0e0ea4215c" name="note_1" x="322" y="98">
+   <obj type="midi/out/note" uuid="a76ae870da278cbbce5501a57ce7bd0e0ea4215c" name="note_1" x="322" y="112">
       <params/>
       <attribs>
-         <combo attributeName="device" selection="din"/>
+         <combo attributeName="device" selection="internal port 2"/>
          <spinner attributeName="channel" value="1"/>
       </attribs>
    </obj>
@@ -47,12 +47,12 @@
          <dest obj="+_1" inlet="in2"/>
       </net>
       <net>
-         <source obj="bipolar2unipolar_1" outlet="o"/>
-         <dest obj="extra_midi_out_1" inlet="Note"/>
-      </net>
-      <net>
          <source obj="keyb_1" outlet="note"/>
          <dest obj="+_1" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="bipolar2unipolar_1" outlet="o"/>
+         <dest obj="extra_midi_out_1" inlet="Key"/>
       </net>
    </nets>
    <settings>
@@ -63,12 +63,11 @@
       <NPresetEntries>32</NPresetEntries>
       <NModulationSources>4</NModulationSources>
       <NModulationTargetsPerSource>4</NModulationTargetsPerSource>
-      <Author></Author>
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>113</x>
-      <y>162</y>
+      <x>316</x>
+      <y>241</y>
       <width>750</width>
       <height>477</height>
    </windowPos>

@@ -1,0 +1,25 @@
+<patch-1.0 appVersion="1.0.11">
+   <obj type="./korg_patch_synth_8" uuid="0e0f2b03-6fb1-4b87-a3fa-0158c8067a19" name="korg_patch_synth_8_1" x="14" y="14">
+      <params>
+         <frac32.s.map name="osc_2" value="15.0"/>
+         <frac32.s.map name="vcf3_1_:pitch" value="5.0"/>
+         <frac32.s.map name="vcf3_1__:pitch" value="15.0"/>
+      </params>
+      <attribs>
+         <combo attributeName="midichannel" selection="inherit"/>
+         <combo attributeName="mididevice" selection="omni"/>
+         <combo attributeName="midiport" selection="omni"/>
+      </attribs>
+   </obj>
+   <nets/>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>116</x>
+      <y>66</y>
+      <width>772</width>
+      <height>545</height>
+   </windowPos>
+</patch-1.0>

@@ -1,5 +1,5 @@
-<patch-1.0 appVersion="1.0.10">
-   <obj type="script/script2" sha="1478c410b77725959c034de4a2456dd1198e9080" name="script2_1" x="28" y="28">
+<patch-1.0 appVersion="1.0.11">
+   <obj type="script/script2" uuid="d39e743cf47c9221f4e99c133430148cf74c68c5" name="script2_1" x="28" y="28">
       <params/>
       <attribs>
          <text attributeName="script">
@@ -103,7 +103,7 @@ void MidiInByteHandler(uint8_t data) {
       MidiByte1 = data;
       if (MidiNumData == 1) {
         // 2 byte message complete
-        MidiInMsgHandler(MIDI_DEVICE_DIN,port,MidiByte0, MidiByte1,0);
+        MidiInMsgHandler(MIDI_DEVICE_INTERNAL,port,MidiByte0, MidiByte1,0);
         //MidiInMsgHandler(MidiByte0, MidiByte1, 0);
         MidiCurData = 0;
       }
@@ -143,8 +143,8 @@ void loop(){
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>465</x>
-      <y>59</y>
+      <x>115</x>
+      <y>212</y>
       <width>813</width>
       <height>646</height>
    </windowPos>

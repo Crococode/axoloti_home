@@ -1,0 +1,332 @@
+<patch-1.0 appVersion="1.0.11">
+   <obj type="math/c 32" uuid="f91ee22ebad354db6e67a2c3bc226d4ba73835eb" name="c_1" x="98" y="28">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="noise/pink" uuid="72c03a2468ee865f248733fcf9b12d4cf42b5a61" name="pnoise2_1" x="182" y="28">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="lfo/sine" uuid="75f7330c26a13953215dccc3b7b9008545c9daa9" name="osc1" x="0" y="70">
+      <params>
+         <frac32.s.map name="pitch" value="2.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 2" uuid="682ea5496ded046d981e26b720a6e7f8eca97541" name="mix21" x="98" y="70">
+      <params>
+         <frac32.u.map name="gain1" value="2.5"/>
+         <frac32.u.map name="gain2" value="14.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <patcher type="patch/patcher" uuid="3c32a30d-0fb1-408d-b507-969849f18430" name="organvoice1" x="182" y="70">
+      <params>
+         <frac32.s.map name="ahd_1:a" value="-64.0"/>
+         <frac32.s.map name="ahd_1:d" value="-3.5"/>
+         <frac32.s.map name="p" value="-28.5"/>
+         <frac32.u.map name="*c_2" value="25.5"/>
+         <frac32.u.map name="*c_1" value="10.5"/>
+         <frac32.u.map name="*c_3" value="23.0"/>
+         <frac32.u.map name="mix_1:gain1" value="18.0">
+            <presets>
+               <preset index="1">
+                  <f v="0.0"/>
+               </preset>
+               <preset index="2">
+                  <f v="18.0"/>
+               </preset>
+               <preset index="3">
+                  <f v="18.0"/>
+               </preset>
+               <preset index="4">
+                  <f v="18.0"/>
+               </preset>
+            </presets>
+         </frac32.u.map>
+         <frac32.u.map name="mix_1:gain2" value="25.0">
+            <presets>
+               <preset index="1">
+                  <f v="34.0"/>
+               </preset>
+               <preset index="2">
+                  <f v="0.0"/>
+               </preset>
+               <preset index="3">
+                  <f v="0.0"/>
+               </preset>
+               <preset index="4">
+                  <f v="25.0"/>
+               </preset>
+            </presets>
+         </frac32.u.map>
+         <frac32.u.map name="mix_1:gain3" value="0.0">
+            <presets>
+               <preset index="1">
+                  <f v="0.0"/>
+               </preset>
+               <preset index="2">
+                  <f v="31.0"/>
+               </preset>
+               <preset index="3">
+                  <f v="31.0"/>
+               </preset>
+               <preset index="4">
+                  <f v="0.0"/>
+               </preset>
+            </presets>
+         </frac32.u.map>
+         <frac32.u.map name="mix_1:gain4" value="0.5">
+            <presets/>
+         </frac32.u.map>
+      </params>
+      <attribs>
+         <combo attributeName="poly" selection="4"/>
+         <combo attributeName="midichannel" selection="inherit"/>
+         <combo attributeName="mididevice" selection="din"/>
+         <combo attributeName="midiport" selection="omni"/>
+      </attribs>
+      <subpatch appVersion="1.0.11">
+         <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb1" x="0" y="0">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="env/ahd" uuid="2139369d6de2ba5ddf76e602d1d25df653ca9eed" name="ahd_1" x="182" y="0">
+            <params>
+               <frac32.s.map name="a" onParent="true" value="6.5"/>
+               <frac32.s.map name="d" onParent="true" value="37.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="env/d" uuid="190ae648e41832b41adbedb465317c18a010aefe" name="p" x="322" y="28">
+            <params>
+               <frac32.s.map name="d" onParent="true" value="-14.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="math/div 4" uuid="507955275561b256e540f7205386d31545a2828f" name="div_1" x="420" y="28">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet f" uuid="d18a9a550bcaaebac94e25983bd0e27dbfd7233c" name="pressure" x="490" y="28">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="osc/sine" uuid="6e094045cca76a9dbf7ebfa72e44e4700d2b3ba" name="sine_1" x="126" y="126">
+            <params>
+               <frac32.s.map name="pitch" value="-11.989999771118164"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="28" y="154">
+            <params>
+               <frac32.u.map name="amp" onParent="true" value="12.5"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="28" y="238">
+            <params>
+               <frac32.u.map name="amp" onParent="true" value="10.5"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="osc/sine" uuid="6e094045cca76a9dbf7ebfa72e44e4700d2b3ba" name="sine_2" x="126" y="238">
+            <params>
+               <frac32.s.map name="pitch" value="0.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet f" uuid="5c585d2dcd9c05631e345ac09626a22a639d7c13" name="pressure_in" x="280" y="294">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="math/-" uuid="3280bb759e9fc189e134300e48dda7e903c9a110" name="-1" x="350" y="294">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="math/satp" uuid="9064bac2c45ccdaa67eb85b03669d145a076bfd3" name="satp1" x="420" y="294">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_3" x="28" y="350">
+            <params>
+               <frac32.u.map name="amp" onParent="true" value="10.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="osc/sine" uuid="6e094045cca76a9dbf7ebfa72e44e4700d2b3ba" name="sine_3" x="126" y="350">
+            <params>
+               <frac32.s.map name="pitch" value="11.989999771118164"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="patch/inlet a" uuid="b577fe41e0a6bc7b5502ce33cb8a3129e2e28ee5" name="noise" x="28" y="476">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="mix/mix 4" uuid="e6f9a0cc7aadc1b89516143cf1ccb79b3538d05a" name="mix_1" x="322" y="476">
+            <params>
+               <frac32.u.map name="gain1" onParent="true" value="12.5"/>
+               <frac32.u.map name="gain2" onParent="true" value="19.0"/>
+               <frac32.u.map name="gain3" onParent="true" value="21.5"/>
+               <frac32.u.map name="gain4" onParent="true" value="1.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="462" y="476">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="patch/outlet a" uuid="abd8c5fd3b0524a6630f65cad6dc27f6c58e2a3e" name="out" x="518" y="476">
+            <params/>
+            <attribs/>
+         </obj>
+         <nets>
+            <net>
+               <source obj="keyb1" outlet="gate"/>
+               <dest obj="p" inlet="trig"/>
+               <dest obj="ahd_1" inlet="gate"/>
+            </net>
+            <net>
+               <source obj="sine_1" outlet="wave"/>
+               <dest obj="mix_1" inlet="in1"/>
+            </net>
+            <net>
+               <source obj="sine_2" outlet="wave"/>
+               <dest obj="mix_1" inlet="in2"/>
+            </net>
+            <net>
+               <source obj="sine_3" outlet="wave"/>
+               <dest obj="*c_1" inlet="in"/>
+               <dest obj="mix_1" inlet="in3"/>
+            </net>
+            <net>
+               <source obj="*c_1" outlet="out"/>
+               <dest obj="sine_2" inlet="phase"/>
+            </net>
+            <net>
+               <source obj="keyb1" outlet="note"/>
+               <dest obj="sine_1" inlet="pitch"/>
+               <dest obj="sine_2" inlet="pitch"/>
+               <dest obj="sine_3" inlet="pitch"/>
+            </net>
+            <net>
+               <source obj="mix_1" outlet="out"/>
+               <dest obj="vca_1" inlet="a"/>
+               <dest obj="*c_2" inlet="in"/>
+               <dest obj="*c_3" inlet="in"/>
+            </net>
+            <net>
+               <source obj="*c_2" outlet="out"/>
+               <dest obj="sine_1" inlet="phase"/>
+            </net>
+            <net>
+               <source obj="*c_3" outlet="out"/>
+               <dest obj="sine_3" inlet="phase"/>
+            </net>
+            <net>
+               <source obj="p" outlet="env"/>
+               <dest obj="div_1" inlet="in"/>
+            </net>
+            <net>
+               <source obj="div_1" outlet="out"/>
+               <dest obj="pressure" inlet="outlet"/>
+            </net>
+            <net>
+               <source obj="ahd_1" outlet="env"/>
+               <dest obj="-1" inlet="in1"/>
+            </net>
+            <net>
+               <source obj="-1" outlet="out"/>
+               <dest obj="satp1" inlet="in"/>
+            </net>
+            <net>
+               <source obj="pressure_in" outlet="inlet"/>
+               <dest obj="-1" inlet="in2"/>
+            </net>
+            <net>
+               <source obj="vca_1" outlet="o"/>
+               <dest obj="out" inlet="outlet"/>
+            </net>
+            <net>
+               <source obj="satp1" outlet="out"/>
+               <dest obj="vca_1" inlet="v"/>
+            </net>
+            <net>
+               <source obj="noise" outlet="inlet"/>
+               <dest obj="mix_1" inlet="in4"/>
+            </net>
+         </nets>
+         <settings>
+            <subpatchmode>polychannel</subpatchmode>
+            <MidiChannel>1</MidiChannel>
+            <HasMidiChannelSelector>true</HasMidiChannelSelector>
+            <NPresets>8</NPresets>
+            <NPresetEntries>4</NPresetEntries>
+            <NModulationSources>4</NModulationSources>
+            <NModulationTargetsPerSource>4</NModulationTargetsPerSource>
+         </settings>
+         <notes><![CDATA[]]></notes>
+         <windowPos>
+            <x>791</x>
+            <y>237</y>
+            <width>828</width>
+            <height>780</height>
+         </windowPos>
+      </subpatch>
+   </patcher>
+   <obj type="delay/echo fdbk mix" uuid="15716b14ebe691010ccfd54af72ea23232a843c6" name="echo2_1" x="336" y="70">
+      <params>
+         <frac32.u.map name="mix" value="3.0"/>
+         <frac32.u.map name="feedback" value="16.0"/>
+      </params>
+      <attribs>
+         <spinner attributeName="delaylength" value="8192"/>
+      </attribs>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="dac_21" x="448" y="70">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="echo2_1" outlet="out"/>
+         <dest obj="dac_21" inlet="left"/>
+         <dest obj="dac_21" inlet="right"/>
+      </net>
+      <net>
+         <source obj="organvoice1" outlet="pressure"/>
+         <dest obj="mix21" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="mix21" outlet="out"/>
+         <dest obj="organvoice1" inlet="pressure_in"/>
+      </net>
+      <net>
+         <source obj="c_1" outlet="o"/>
+         <dest obj="mix21" inlet="bus_in"/>
+      </net>
+      <net>
+         <source obj="osc1" outlet="wave"/>
+         <dest obj="mix21" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="organvoice1" outlet="out"/>
+         <dest obj="echo2_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="pnoise2_1" outlet="out"/>
+         <dest obj="organvoice1" inlet="noise"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>385</x>
+      <y>60</y>
+      <width>828</width>
+      <height>780</height>
+   </windowPos>
+</patch-1.0>

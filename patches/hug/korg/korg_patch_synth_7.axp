@@ -1,0 +1,31 @@
+<patch-1.0 appVersion="1.0.11">
+   <obj type="./korg_patch_synth_7" uuid="ce7e5194-6241-413e-83fd-33d7d05a38a9" name="korg_patch_synth_7_1" x="14" y="14">
+      <params>
+         <frac32.u.map name="smooth1:risetime" value="18.0"/>
+         <frac32.u.map name="smooth1:falltime" value="3.5"/>
+         <frac32.s.map name="envahd1:a" value="29.0"/>
+         <frac32.s.map name="envahd1:d" value="32.5"/>
+         <frac32.u.map name="smooth1_:risetime" value="7.0"/>
+         <frac32.u.map name="smooth1_:falltime" value="9.5"/>
+         <frac32.s.map name="vcf3_1:pitch" value="31.0"/>
+         <frac32.s.map name="osc_2" value="15.0"/>
+         <frac32.u.map name="echo2_1:feedback" value="15.0"/>
+      </params>
+      <attribs>
+         <combo attributeName="midichannel" selection="inherit"/>
+         <combo attributeName="mididevice" selection="omni"/>
+         <combo attributeName="midiport" selection="omni"/>
+      </attribs>
+   </obj>
+   <nets/>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>116</x>
+      <y>66</y>
+      <width>772</width>
+      <height>545</height>
+   </windowPos>
+</patch-1.0>
