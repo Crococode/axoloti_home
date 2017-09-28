@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.12">
+<patch-1.0 appVersion="1.0.11">
    <obj type="patch/bankindex" uuid="943bd281-10a5-4994-9876-11a3b1fbde8a" name="bankindex_1" x="28" y="0">
       <params/>
       <attribs/>
@@ -10,7 +10,7 @@
    <obj type="const/i" uuid="e202f44b2df17ae0b3e663b98ea6b14c8ff00408" name="i_2" x="224" y="28">
       <params/>
       <attribs>
-         <spinner attributeName="value" value="8"/>
+         <spinner attributeName="value" value="6"/>
       </attribs>
    </obj>
    <obj type="logic/or 2" uuid="3805d3c84d30032a44fbdbe42d9a2988a1790a3e" name="or_2" x="560" y="28">
@@ -95,7 +95,7 @@
    <obj type="const/i" uuid="e202f44b2df17ae0b3e663b98ea6b14c8ff00408" name="i_5" x="224" y="196">
       <params/>
       <attribs>
-         <spinner attributeName="value" value="-1"/>
+         <spinner attributeName="value" value="0"/>
       </attribs>
    </obj>
    <obj type="gpio/in/button2" uuid="e844813dc6e022223cd10d8beb29b62732231867" name="button2_1" x="28" y="266">
@@ -207,7 +207,7 @@
       </net>
       <net>
          <source obj="i_5" outlet="out"/>
-         <dest obj="&gt;_2" inlet="in1"/>
+         <dest obj="&gt;_2" inlet="in2"/>
       </net>
       <net>
          <source obj="or_2" outlet="o"/>
@@ -241,8 +241,8 @@
       </net>
       <net>
          <source obj="-1_1" outlet="result"/>
+         <dest obj="&gt;_2" inlet="in1"/>
          <dest obj="load_3" inlet="i"/>
-         <dest obj="&gt;_2" inlet="in2"/>
       </net>
    </nets>
    <settings>

@@ -1,7 +1,7 @@
-<patch-1.0 appVersion="1.0.11">
+<patch-1.0 appVersion="1.0.12">
    <obj type="lfo/sine" uuid="75f7330c26a13953215dccc3b7b9008545c9daa9" name="osc1" x="14" y="0">
       <params>
-         <frac32.s.map name="pitch" value="-9.0"/>
+         <frac32.s.map name="pitch" value="5.0"/>
       </params>
       <attribs/>
    </obj>
@@ -9,31 +9,36 @@
       <params/>
       <attribs/>
    </obj>
-   <patcher type="patch/patcher" uuid="bd1a62da-d020-49ff-ae2e-a5c876daead7" name="eclectric_piano_voice2" x="14" y="98">
+   <obj type="sss/dyn/compST" uuid="802a0a7f-b625-499f-9670-0739ca99f02e" name="compST_1" x="826" y="28">
       <params>
-         <frac32.u.map name="q:gain1" value="2.0"/>
-         <frac32.u.map name="q:gain2" value="1.5"/>
+         <frac32.u.map name="tresh" value="23.0"/>
+         <frac32.u.map name="soft" value="31.0"/>
+         <frac32.u.map name="ratio" value="22.0"/>
+         <frac32.u.map name="attack" value="0.0"/>
+         <frac32.u.map name="decay" value="52.0"/>
+         <frac32.u.map name="gain" value="64.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <patcher type="patch/patcher" uuid="6d458258-c4e1-4b9f-9dbb-19b2b4185ea8" name="eclectric_piano_voice2" x="14" y="98">
+      <params>
+         <frac32.u.map name="q:gain1" value="1.5"/>
+         <frac32.u.map name="q:gain2" value="1.0"/>
+         <frac32.u.map name="mix_1:gain1" value="5.999999523162842"/>
+         <frac32.u.map name="mix_1:gain2" value="3.999999523162842"/>
+         <frac32.u.map name="mix_1:gain3" value="2.9499998092651367"/>
          <frac32.s.map name="f1:pitch" value="0.0"/>
          <frac32.s.map name="f2:pitch" value="12.0"/>
-         <frac32.u.map name="mix_1:gain1" value="14.0"/>
-         <frac32.u.map name="mix_1:gain2" value="17.0"/>
-         <frac32.u.map name="mix_1:gain3" value="10.5"/>
       </params>
       <attribs>
-         <combo attributeName="poly" selection="4"/>
+         <combo attributeName="poly" selection="5"/>
          <combo attributeName="midichannel" selection="inherit"/>
          <combo attributeName="mididevice" selection="internal"/>
          <combo attributeName="midiport" selection="2"/>
       </attribs>
-      <subpatch appVersion="1.0.11">
+      <subpatch appVersion="1.0.12">
          <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb1" x="0" y="0">
             <params/>
-            <attribs/>
-         </obj>
-         <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="velo" x="140" y="0">
-            <params>
-               <frac32.u.map name="amp" value="48.0"/>
-            </params>
             <attribs/>
          </obj>
          <obj type="math/satp" uuid="9064bac2c45ccdaa67eb85b03669d145a076bfd3" name="satp1" x="224" y="0">
@@ -51,6 +56,12 @@
             </params>
             <attribs/>
          </obj>
+         <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="velo" x="112" y="56">
+            <params>
+               <frac32.u.map name="amp" value="0.0"/>
+            </params>
+            <attribs/>
+         </obj>
          <obj type="filter/vcf3" uuid="92455c652cd098cbb682a5497baa18abbf2ef865" name="vcf3_1" x="434" y="56">
             <params>
                <frac32.s.map name="pitch" value="-12.0"/>
@@ -58,31 +69,38 @@
             </params>
             <attribs/>
          </obj>
-         <obj type="env/d lin m" uuid="e9d9a5152981b17626748fd93e7e6a39c0afe3aa" name="envdlinmx1" x="126" y="84">
+         <obj type="env/d lin m" uuid="e9d9a5152981b17626748fd93e7e6a39c0afe3aa" name="envdlinmx1" x="224" y="70">
             <params>
-               <frac32.s.map name="d" value="-64.0"/>
+               <frac32.s.map name="d" value="-17.0"/>
             </params>
             <attribs/>
          </obj>
          <obj type="other/lfsr" uuid="72bd4b15e8b3317764d706b44de52bcc6ee4abb9" name="lfsr_1" x="0" y="98">
             <params/>
             <attribs>
-               <combo attributeName="polynomial" selection="0x286"/>
+               <combo attributeName="polynomial" selection="0x21"/>
             </attribs>
          </obj>
-         <obj type="math/div 2" uuid="f14884de1baf3e615e12ee162a96a013eca76789" name="div1281" x="224" y="140">
+         <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="588" y="168">
+            <params>
+               <frac32.u.map name="gain1" onParent="true" value="8.5"/>
+               <frac32.u.map name="gain2" onParent="true" value="10.5"/>
+               <frac32.u.map name="gain3" onParent="true" value="12.0"/>
+            </params>
+            <attribs/>
+         </obj>
+         <obj type="math/*" uuid="922423f2db9f222aa3e5ba095778288c446da47a" name="*1" x="266" y="182">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" uuid="922423f2db9f222aa3e5ba095778288c446da47a" name="*1" x="294" y="140">
-            <params/>
+         <obj type="osc/brds/comb" uuid="e83492db-ef5d-4367-a874-c82385603fee" name="comb_1" x="14" y="196">
+            <params>
+               <frac32.s.map name="pitch" value="0.0"/>
+               <frac32.u.map name="color" value="35.5"/>
+            </params>
             <attribs/>
          </obj>
-         <obj type="conv/bipolar2unipolar" uuid="5b5f9405be365706c1ad37266d9df07b9a1570ee" name="bipolar2unipolar_1" x="0" y="154">
-            <params/>
-            <attribs/>
-         </obj>
-         <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="294" y="196">
+         <obj type="math/div 2" uuid="f14884de1baf3e615e12ee162a96a013eca76789" name="div1281" x="140" y="196">
             <params/>
             <attribs/>
          </obj>
@@ -93,18 +111,18 @@
             </params>
             <attribs/>
          </obj>
+         <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="294" y="280">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="conv/bipolar2unipolar" uuid="5b5f9405be365706c1ad37266d9df07b9a1570ee" name="bipolar2unipolar_1" x="126" y="294">
+            <params/>
+            <attribs/>
+         </obj>
          <obj type="filter/vcf3" uuid="92455c652cd098cbb682a5497baa18abbf2ef865" name="f2" x="434" y="336">
             <params>
                <frac32.s.map name="pitch" onParent="true" value="12.0"/>
                <frac32.u.map name="reso" value="62.924999713897705"/>
-            </params>
-            <attribs/>
-         </obj>
-         <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="574" y="336">
-            <params>
-               <frac32.u.map name="gain1" onParent="true" value="8.5"/>
-               <frac32.u.map name="gain2" onParent="true" value="10.5"/>
-               <frac32.u.map name="gain3" onParent="true" value="12.0"/>
             </params>
             <attribs/>
          </obj>
@@ -130,6 +148,7 @@
                <dest obj="f1" inlet="pitch"/>
                <dest obj="f2" inlet="pitch"/>
                <dest obj="satp1" inlet="in"/>
+               <dest obj="comb_1" inlet="pitch"/>
             </net>
             <net>
                <source obj="q" outlet="out"/>
@@ -159,10 +178,6 @@
                <dest obj="div1281" inlet="in"/>
             </net>
             <net>
-               <source obj="lfsr_1" outlet="out"/>
-               <dest obj="bipolar2unipolar_1" inlet="i"/>
-            </net>
-            <net>
                <source obj="velo" outlet="out"/>
                <dest obj="envdlinmx1" inlet="d"/>
             </net>
@@ -190,21 +205,24 @@
                <source obj="inv1" outlet="out"/>
                <dest obj="q" inlet="in2"/>
             </net>
+            <net>
+               <source obj="comb_1" outlet="wave"/>
+               <dest obj="bipolar2unipolar_1" inlet="i"/>
+            </net>
          </nets>
          <settings>
-            <subpatchmode>polyphonic</subpatchmode>
+            <subpatchmode>polychannel</subpatchmode>
             <MidiChannel>1</MidiChannel>
             <HasMidiChannelSelector>true</HasMidiChannelSelector>
             <NPresets>2</NPresets>
             <NPresetEntries>2</NPresetEntries>
             <NModulationSources>4</NModulationSources>
             <NModulationTargetsPerSource>4</NModulationTargetsPerSource>
-            <Author></Author>
          </settings>
          <notes><![CDATA[]]></notes>
          <windowPos>
-            <x>312</x>
-            <y>212</y>
+            <x>119</x>
+            <y>21</y>
             <width>1010</width>
             <height>646</height>
          </windowPos>
@@ -212,7 +230,7 @@
    </patcher>
    <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_1" x="154" y="98">
       <params>
-         <frac32.u.map name="gain1" value="15.5"/>
+         <frac32.u.map name="gain1" value="2.5"/>
       </params>
       <attribs/>
    </obj>
@@ -226,19 +244,85 @@
    </obj>
    <obj type="filter/hp1" uuid="abea7276611b289bed35b80345a6bc4efd4d9a4e" name="hipass_1" x="406" y="98">
       <params>
-         <frac32.s.map name="freq" value="14.5"/>
+         <frac32.s.map name="freq" value="11.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="dac_1" x="518" y="98">
+   <obj type="mix/xfade" uuid="375dc91d218e96cdc9cbc7e92adb48f705ef701a" name="xfade_1" x="630" y="98">
       <params/>
       <attribs/>
    </obj>
-   <obj type="stomps/reverb1" uuid="b7430436-47ff-41c1-80d6-1c1473720245" name="obj_1" x="420" y="196">
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="952" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="dac_1" x="1022" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="filter/lp m" uuid="1aa1bc51da479ed92429af700591f9d7b9f45f22" name="lp_1" x="294" y="154">
       <params>
+         <frac32.s.map name="pitch" value="-14.0"/>
+         <frac32.u.map name="reso" value="1.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="mix/xfade" uuid="375dc91d218e96cdc9cbc7e92adb48f705ef701a" name="xfade_2" x="630" y="182">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_2" x="952" y="182">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="hug/leslie" uuid="7e546064-e9d6-457c-a2ba-a1da9e47e7f7" name="obj_3" x="406" y="196">
+      <params>
+         <frac32.s.map name="speed" value="1.0"/>
+         <frac32.u.map name="*c_2" value="64.0"/>
+         <frac32.s.map name="offset" value="20.0"/>
+         <frac32.u.map name="*c_3" value="64.0"/>
+         <frac32.s.map name="xover1" value="38.0"/>
+         <frac32.s.map name="xover2" value="4.0"/>
+         <frac32.u.map name="blend" value="19.5"/>
          <bool32.tgl name="on" value="1"/>
-         <frac32.u.map name="*c_1" value="5.0"/>
-         <frac32.u.map name="decay" value="3.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="./korg_potis" uuid="7ff1982f-6e09-427b-b611-c0dcc3642066" name="korg_potis_1" x="154" y="210">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="dial_1" x="532" y="280">
+      <params>
+         <frac32.u.map name="value" value="1.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="sss/dist/analogue" uuid="a593e734-a265-40e8-828b-1d1bb04d7887" name="analogue_1" x="616" y="294">
+      <params>
+         <frac32.u.map name="risetime" value="32.5"/>
+         <frac32.u.map name="falltime" value="54.5"/>
+         <frac32.u.map name="LPHP" value="64.0"/>
+         <frac32.s.map name="Freq" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="fx/chorus" uuid="8de9de8e-98bc-47de-a707-324e16a9c527" name="obj_2" x="728" y="294">
+      <params>
+         <frac32.u.map name="depth" value="3.5"/>
+         <frac32.s.map name="speed" value="-34.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="dial_2" x="532" y="378">
+      <params>
+         <frac32.u.map name="value" value="52.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="dial_3" x="532" y="476">
+      <params>
+         <frac32.u.map name="value" value="44.0"/>
       </params>
       <attribs/>
    </obj>
@@ -268,17 +352,83 @@
          <dest obj="mix_1" inlet="bus_in"/>
       </net>
       <net>
-         <source obj="obj_1" outlet="outL"/>
+         <source obj="vca_1" outlet="o"/>
+         <dest obj="dac_1" inlet="left"/>
+      </net>
+      <net>
+         <source obj="vca_2" outlet="o"/>
          <dest obj="dac_1" inlet="right"/>
       </net>
       <net>
-         <source obj="hipass_1" outlet="out"/>
-         <dest obj="obj_1" inlet="inL"/>
-         <dest obj="obj_1" inlet="inR"/>
+         <source obj="lp_1" outlet="out"/>
+         <dest obj="obj_3" inlet="inlet_1"/>
       </net>
       <net>
-         <source obj="obj_1" outlet="outR"/>
-         <dest obj="dac_1" inlet="left"/>
+         <source obj="korg_potis_1" outlet="outlet_2"/>
+         <dest obj="lp_1" inlet="pitch"/>
+         <dest obj="analogue_1" inlet="Pitch"/>
+      </net>
+      <net>
+         <source obj="korg_potis_1" outlet="outlet_1"/>
+         <dest obj="vca_1" inlet="v"/>
+         <dest obj="vca_2" inlet="v"/>
+      </net>
+      <net>
+         <source obj="korg_potis_1" outlet="outlet_3"/>
+         <dest obj="obj_3" inlet="depth_"/>
+         <dest obj="obj_3" inlet="wobble_"/>
+         <dest obj="xfade_1" inlet="c"/>
+         <dest obj="xfade_2" inlet="c"/>
+      </net>
+      <net>
+         <source obj="obj_3" outlet="outlet_1"/>
+         <dest obj="xfade_1" inlet="i1"/>
+         <dest obj="xfade_2" inlet="i1"/>
+         <dest obj="analogue_1" inlet="Audio"/>
+      </net>
+      <net>
+         <source obj="hipass_1" outlet="out"/>
+         <dest obj="lp_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="compST_1" outlet="outL"/>
+         <dest obj="vca_1" inlet="a"/>
+      </net>
+      <net>
+         <source obj="compST_1" outlet="outR"/>
+         <dest obj="vca_2" inlet="a"/>
+      </net>
+      <net>
+         <source obj="obj_2" outlet="L"/>
+         <dest obj="xfade_1" inlet="i2"/>
+      </net>
+      <net>
+         <source obj="obj_2" outlet="R"/>
+         <dest obj="xfade_2" inlet="i2"/>
+      </net>
+      <net>
+         <source obj="xfade_1" outlet="o"/>
+         <dest obj="compST_1" inlet="inL"/>
+      </net>
+      <net>
+         <source obj="xfade_2" outlet="o"/>
+         <dest obj="compST_1" inlet="inR"/>
+      </net>
+      <net>
+         <source obj="dial_1" outlet="out"/>
+         <dest obj="analogue_1" inlet="Gain"/>
+      </net>
+      <net>
+         <source obj="dial_3" outlet="out"/>
+         <dest obj="analogue_1" inlet="Power"/>
+      </net>
+      <net>
+         <source obj="dial_2" outlet="out"/>
+         <dest obj="analogue_1" inlet="Feed"/>
+      </net>
+      <net>
+         <source obj="analogue_1" outlet="out"/>
+         <dest obj="obj_2" inlet="in"/>
       </net>
    </nets>
    <settings>
@@ -286,8 +436,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>298</x>
-      <y>56</y>
+      <x>-48</x>
+      <y>59</y>
       <width>1214</width>
       <height>760</height>
    </windowPos>

@@ -19,7 +19,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="./../korg/OctaveShift_noWav2_extraMidi" uuid="f825e772-f9d1-4c21-aacb-543e63c30428" name="OctaveShift_noWav2_extraMidi_1" x="700" y="14">
+   <obj type="./../korg/OctaveShift_noWav2_extraMidi" uuid="dc23fe97-8d5d-47d4-8ce7-22675391be42" name="OctaveShift_noWav2_extraMidi_1" x="700" y="14">
       <params/>
       <attribs>
          <combo attributeName="poly" selection="5"/>
@@ -78,10 +78,6 @@
       <net>
          <source obj="inv_2" outlet="o"/>
          <dest obj="octaveShift_1" inlet="down"/>
-      </net>
-      <net>
-         <source obj="dial_1" outlet="out"/>
-         <dest obj="octaveShift_1" inlet="a"/>
       </net>
       <net>
          <source obj="octaveShift_1" outlet="result"/>

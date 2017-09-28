@@ -7,7 +7,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="./../midi_io/extra_midi_out" uuid="3d7c2f8a-97ab-43e3-a6e3-4bab322ea63e" name="extra_midi_out_1" x="490" y="28">
+   <obj type="./../midi_io/extra_midi_out" uuid="28aded1b-de9a-45d7-aa52-60153a8562e4" name="extra_midi_out_1" x="490" y="28">
       <params/>
       <attribs/>
    </obj>

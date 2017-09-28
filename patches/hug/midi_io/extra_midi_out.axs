@@ -17,6 +17,8 @@ void setup(){
   i = 0;
   v = 0;
   sig = 0;
+  cc 	 = (uint8_t)(this->in4);
+  ccVal    = (uint8_t)((this->in5)>>20);
 }
 
 void SendMidi3(uint8_t b0,uint8_t b1,uint8_t b2){
@@ -51,8 +53,8 @@ void loop(){
 
   if (cc !=(uint8_t)((this->in4)) || ccVal != (uint8_t)((this->in5)>>20))
   {
-  	cc 	 = (uint8_t)((this->in4));
-  	ccVal = (uint8_t)((this->in5)>>20);
+  	cc 	 = (uint8_t)((this->in4)&0x7F);
+  	ccVal = (uint8_t)(((this->in5)>>20)&0x7F);
   	SendMidi3(0xB0,cc,ccVal);
   	//LogTextMessage("Sending CC: %d,%d",cc,ccVal);
   }
@@ -104,8 +106,8 @@ void loop(){
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>130</x>
-      <y>106</y>
+      <x>425</x>
+      <y>108</y>
       <width>881</width>
       <height>563</height>
    </windowPos>

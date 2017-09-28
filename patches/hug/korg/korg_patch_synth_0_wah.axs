@@ -49,7 +49,7 @@
    <obj type="midi/in/keyb zone lru" uuid="36a44968a4f8b980273e94dca846b7544a3c45d2" name="keybzone_lru1" x="0" y="42">
       <params/>
       <attribs>
-         <spinner attributeName="startNote" value="50"/>
+         <spinner attributeName="startNote" value="0"/>
          <spinner attributeName="endNote" value="120"/>
       </attribs>
    </obj>
@@ -169,6 +169,10 @@
       </params>
       <attribs/>
    </obj>
+   <obj type="./korg_potis" uuid="16d1e623-b8ad-4079-b77e-888c3921e32f" name="korg_potis_1" x="1344" y="546">
+      <params/>
+      <attribs/>
+   </obj>
    <obj type="osc/saw" uuid="739ecc36017ef3249479b8f01716b8bbfba9abc1" name="osc_1_" x="160" y="580">
       <params>
          <frac32.s.map name="pitch" value="-12.14772891998291"/>
@@ -179,54 +183,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="c1" x="840" y="600">
-      <params>
-         <frac32.u.map name="value" value="61.0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="c2" x="840" y="680">
-      <params>
-         <frac32.u.map name="value" value="2.0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="math/smooth2" uuid="9ba3ddec912512e6b63211080e89cb25b6d84834" name="smooth21" x="200" y="700">
-      <params>
-         <frac32.u.map name="risetime" value="27.5"/>
-         <frac32.u.map name="falltime" value="31.5"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="*c_2" x="320" y="700">
-      <params>
-         <frac32.u.map name="amp" value="36.5"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_2" x="560" y="720">
-      <params/>
-      <attribs/>
-   </obj>
-   <obj type="filter/vcf3" uuid="92455c652cd098cbb682a5497baa18abbf2ef865" name="vcf3_1_" x="640" y="720">
-      <params>
-         <frac32.s.map name="pitch" value="5.0"/>
-         <frac32.u.map name="reso" value="60.5"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="./korg_potis" uuid="16d1e623-b8ad-4079-b77e-888c3921e32f" name="korg_potis_1" x="1302" y="728">
-      <params/>
-      <attribs/>
-   </obj>
-   <obj type="fx/chorus" uuid="335fba2dfcc5c7b0847aec5c83eddeeb8edca40c" name="chorus1" x="960" y="740">
-      <params>
-         <frac32.u.map name="depth" value="0.0"/>
-         <frac32.s.map name="speed" value="-64.0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_4" x="1246" y="938">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_4" x="1330" y="672">
       <params>
          <frac32.u.map name="gain1" value="49.5"/>
          <frac32.u.map name="gain2" value="31.5"/>
@@ -234,7 +191,26 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_5" x="1360" y="940">
+   <obj type="jt/filter/vcf4pole" uuid="f926d4ad-3053-4a66-be48-6db4447a260a" name="vcf4pole_1" x="1428" y="672">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="reso" value="1.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_3" x="1540" y="700">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_2" x="560" y="720">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_4" x="1540" y="868">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_5" x="1330" y="882">
       <params>
          <frac32.u.map name="gain1" value="51.0"/>
          <frac32.u.map name="gain2" value="50.5"/>
@@ -242,15 +218,14 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_3" x="1484" y="966">
-      <params/>
+   <obj type="jt/filter/vcf4pole" uuid="f926d4ad-3053-4a66-be48-6db4447a260a" name="vcf4pole_2" x="1428" y="882">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="reso" value="1.5"/>
+      </params>
       <attribs/>
    </obj>
    <obj type="audio/out left" uuid="b11a3c09b2fdd575ea8212f2ce7743d5269253b1" name="dac_11" x="1560" y="980">
-      <params/>
-      <attribs/>
-   </obj>
-   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_4" x="1484" y="1036">
       <params/>
       <attribs/>
    </obj>
@@ -329,10 +304,6 @@
          <dest obj="envahd1__" inlet="gate"/>
       </net>
       <net>
-         <source obj="vca_2" outlet="o"/>
-         <dest obj="vcf3_1_" inlet="in"/>
-      </net>
-      <net>
          <source obj="vcf3_1" outlet="out"/>
          <dest obj="vca_2_" inlet="a"/>
       </net>
@@ -366,32 +337,12 @@
          <dest obj="vca_2" inlet="v"/>
       </net>
       <net>
-         <source obj="vcf3_1_" outlet="out"/>
-         <dest obj="chorus1" inlet="in"/>
-      </net>
-      <net>
-         <source obj="keybzone_lru2" outlet="velocity"/>
-         <dest obj="smooth21" inlet="in"/>
-      </net>
-      <net>
-         <source obj="smooth21" outlet="out"/>
-         <dest obj="*c_2" inlet="in"/>
-      </net>
-      <net>
-         <source obj="*c_2" outlet="out"/>
-         <dest obj="vcf3_1_" inlet="pitch"/>
-      </net>
-      <net>
          <source obj="rand_1" outlet="wave"/>
          <dest obj="mix_8" inlet="in1"/>
       </net>
       <net>
          <source obj="mix_8" outlet="out"/>
          <dest obj="*_1" inlet="a"/>
-      </net>
-      <net>
-         <source obj="mix_4" outlet="out"/>
-         <dest obj="vca_3" inlet="a"/>
       </net>
       <net>
          <source obj="echo2_1" outlet="out"/>
@@ -420,7 +371,7 @@
       </net>
       <net>
          <source obj="mix_5" outlet="out"/>
-         <dest obj="vca_4" inlet="a"/>
+         <dest obj="vcf4pole_2" inlet="in"/>
       </net>
       <net>
          <source obj="vca_4" outlet="o"/>
@@ -434,6 +385,23 @@
          <source obj="korg_potis_1" outlet="outlet_1"/>
          <dest obj="vca_3" inlet="v"/>
          <dest obj="vca_4" inlet="v"/>
+      </net>
+      <net>
+         <source obj="vcf4pole_1" outlet="out"/>
+         <dest obj="vca_3" inlet="a"/>
+      </net>
+      <net>
+         <source obj="mix_4" outlet="out"/>
+         <dest obj="vcf4pole_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="vcf4pole_2" outlet="out"/>
+         <dest obj="vca_4" inlet="a"/>
+      </net>
+      <net>
+         <source obj="korg_potis_1" outlet="outlet_2"/>
+         <dest obj="vcf4pole_1" inlet="pitch"/>
+         <dest obj="vcf4pole_2" inlet="pitch"/>
       </net>
    </nets>
    <settings>
